@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "72627248071",
+    "firebase_url": "https://health-battle.firebaseio.com",
+    "project_id": "health-battle",
+    "storage_bucket": "health-battle.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:72627248071:android:a5c644472582fcd9",
+        "android_client_info": {
+          "package_name": "com.nice295.healthbattle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "72627248071-gij8d4nvdd3qr81ui0mf7tde2i829nc8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nice295.healthbattle",
+            "certificate_hash": "CB697776674FB5607EFE5BA44124DC0A4D1D1D75"
+          }
+        },
+        {
+          "client_id": "72627248071-583ser5osm0gshoaq4f6mh6ss2tlvdej.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeyr2tK4W2oicCmXvTwtKwlLkMeBbyVfc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "72627248071-583ser5osm0gshoaq4f6mh6ss2tlvdej.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
