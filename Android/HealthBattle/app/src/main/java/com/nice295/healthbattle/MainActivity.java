@@ -1,17 +1,16 @@
 package com.nice295.healthbattle;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.firebase.auth.FacebookAuthCredential;
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -19,11 +18,15 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.nice295.healthbattle.model.User;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
 
     private TextView mTvUser;
+    private CircleImageView mIvProfile;
     private ProgressBar mProgressBar;
 
     private DatabaseReference mDatabase;
@@ -38,6 +41,7 @@ public class MainActivity extends BaseActivity {
 
         // views
         mTvUser = (TextView) findViewById(R.id.tvUser);
+        mIvProfile = (CircleImageView) findViewById(R.id.ivProfile);
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         // firebase
@@ -63,10 +67,14 @@ public class MainActivity extends BaseActivity {
                                     "Email: " + user.getEmail() + "\n" +
                                     "Power " + user.getPower() + "\n" +
                                     "Skill: " + user.getSkill() + "\n");
+
+                            Glide.with(getApplicationContext())
+                                    .load(user.getImageUrl())
+                                    .into(mIvProfile);
                         }
                         else {
                             Log.d(TAG, "Adding new user info");
-                            writeNewUser(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail());
+                            writeNewUser(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail(), mUser.getPhotoUrl().toString());
                         }
 
                         mProgressBar.setVisibility(View.INVISIBLE);
@@ -79,8 +87,8 @@ public class MainActivity extends BaseActivity {
                 });
     }
 
-    private void writeNewUser(String userId, String name, String email) {
-        User user = new User(name, email);
+    private void writeNewUser(String userId, String name, String email, String imageUrl) {
+        User user = new User(name, email, imageUrl);
 
         mDatabase.child("users").child(userId).setValue(user);
     }
@@ -96,6 +104,10 @@ public class MainActivity extends BaseActivity {
         switch (item.getItemId()) {
             case R.id.menu_logout:
                 signOut();
+                return true;
+            case R.id.menu_debug:
+                Intent intent = new Intent(getApplicationContext(), DebugmainActivity.class);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

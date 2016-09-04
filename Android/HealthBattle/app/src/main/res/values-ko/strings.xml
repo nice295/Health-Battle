@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">헬스 배틀</string>
+
+    <string name="sign_in">로그인</string>
+    <string name="sign_out">로그아웃</string>
+    <string name="debug">디버그</string>
+</resources>
