@@ -11,21 +11,9 @@
     tools:layout_editor_absoluteY="81dp">
 
     <TextView
-        android:text="가나다라마바사"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp"
-        app:layout_constraintLeft_toLeftOf="@+id/activity_main"
-        tools:layout_constraintLeft_creator="0"
-        app:layout_constraintTop_toTopOf="@+id/activity_main"
-        tools:layout_constraintTop_creator="0"
-        android:textSize="30sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvUser"
+        android:id="@+id/tvResult"
         tools:layout_editor_absoluteX="188dp"
         tools:layout_editor_absoluteY="247dp"
         app:layout_constraintLeft_toLeftOf="@+id/activity_main"
@@ -65,7 +53,7 @@
         tools:layout_editor_absoluteY="279dp"
         app:layout_constraintLeft_toLeftOf="@+id/activity_main"
         tools:layout_constraintLeft_creator="0"
-        app:layout_constraintTop_toBottomOf="@+id/tvUser"
+        app:layout_constraintTop_toBottomOf="@+id/tvResult"
         android:layout_marginTop="16dp"
         tools:layout_constraintTop_creator="0"
         app:layout_constraintRight_toRightOf="@+id/activity_main"

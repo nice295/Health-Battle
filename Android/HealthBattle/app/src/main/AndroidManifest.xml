@@ -25,8 +25,7 @@
 
         <activity
             android:name=".FacebookLoginActivity"
-            android:theme="@style/FullTheme"
-            android:label="@string/label_facebook_login">
+            android:theme="@style/FullTheme" >
 
         </activity>
 
@@ -41,11 +40,18 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar">
         </activity>
 
-        <activity android:name=".DebugmainActivity"
+        <activity android:name=".Debug.DebugmainActivity"
             android:label="@string/debug" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
+        </activity>
+
+        <activity android:name=".Debug.JumpingJackActivity"
+            android:label="@string/debug" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Debug.DebugmainActivity" />
         </activity>
 
     </application>

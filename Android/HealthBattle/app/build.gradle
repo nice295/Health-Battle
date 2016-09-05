@@ -46,10 +46,12 @@ dependencies {
     // Facebook Android SDK (only required for Facebook Login)
     // This is only compiled into the 'facebook' variant of this app. You can build
     // a 'nofacebook' variant to test on devices with SDK < 15.
-    facebookCompile 'com.facebook.android:facebook-android-sdk:4.9.0'
+    // facebookCompile 'com.facebook.android:facebook-android-sdk:4.9.0'
+    compile 'com.facebook.android:facebook-android-sdk:4.+'
 
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile 'com.getwandup:rxsensor:1.0.1'
 }
 
 apply plugin: 'com.google.gms.google-services'

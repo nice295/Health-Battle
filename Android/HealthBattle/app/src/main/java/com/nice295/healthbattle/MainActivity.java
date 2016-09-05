@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -18,6 +17,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.nice295.healthbattle.Debug.DebugmainActivity;
 import com.nice295.healthbattle.model.User;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -40,7 +40,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
 
         // views
-        mTvUser = (TextView) findViewById(R.id.tvUser);
+        mTvUser = (TextView) findViewById(R.id.tvResult);
         mIvProfile = (CircleImageView) findViewById(R.id.ivProfile);
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
 
@@ -48,6 +48,11 @@ public class MainActivity extends BaseActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         mUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (mUser == null) {
+            Intent intent = new Intent(getApplicationContext(), FacebookLoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     @Override
@@ -83,6 +88,22 @@ public class MainActivity extends BaseActivity {
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
                         Log.w(TAG, "getUser:onCancelled", databaseError.toException());
+                    }
+                });
+
+        mDatabase.child("counters").child(mUser.getUid()).child("jumping").addValueEventListener(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            Long count = dataSnapshot.getValue(Long.class);
+                            mTvUser.setText(mTvUser.getText() + "\nJumping : " + count);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Log.w(TAG, "Jumping:onCancelled", databaseError.toException());
                     }
                 });
     }
