@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">Health Battle</string>
 
+    <string name="sign_in">Sign In</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="loading">Loading…</string>
+
+    <string name="shoulderpress">Shoulder Press</string>
+
+    <!--
     <string name="label_facebook_login">Firebase + Facebook Login</string>
     <string name="desc_facebook_login">Use a Facebook Login credential to authenticate with Firebase.</string>
 
@@ -9,11 +16,7 @@
 
     <string name="hint_user_id">User ID</string>
     <string name="get_custom_token">Get Token</string>
-    <string name="sign_in">Sign In</string>
-    <string name="create_account">Create Account</string>
-    <string name="sign_out">Sign Out</string>
-    <string name="disconnect">Disconnect</string>
-    <string name="loading">Loading…</string>
+
     <string name="custom_token">Custom Token</string>
     <string name="signed_out">Signed Out</string>
     <string name="token_null">Token: null</string>
@@ -30,4 +33,5 @@
     <string name="id_fmt">User ID: %s</string>
     <string name="email_fmt">Email: %s</string>
     <string name="debug">Debug</string>
+    -->
 </resources>

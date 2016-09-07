@@ -1,7 +1,10 @@
 <resources>
-    <string name="app_name">헬스 배틀</string>
+    <string name="app_name">헬스해쓰</string>
 
     <string name="sign_in">로그인</string>
-    <string name="sign_out">로그아웃</string>
+    <string name="sign_out">로그 아웃</string>
+    <string name="loading">로딩 중…</string>
     <string name="debug">디버그</string>
+
+    <string name="shoulderpress">숄더 프레스</string>
 </resources>

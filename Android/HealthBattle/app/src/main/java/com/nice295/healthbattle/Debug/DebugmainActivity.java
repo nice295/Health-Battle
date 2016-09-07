@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.nice295.healthbattle.BaseActivity;
 import com.nice295.healthbattle.Debug.JumpingJackActivity;
 import com.nice295.healthbattle.R;
 
@@ -15,12 +16,12 @@ import com.nice295.healthbattle.R;
  * Created by kyuholee on 2016. 9. 4..
  */
 
-public class DebugmainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class DebugmainActivity extends BaseActivity implements AdapterView.OnItemClickListener {
     private ListView mLvList;
 
     private String[] mStrings = {
-            "Jumping jack",
-            "Shake"
+            "Shoulder press",
+            "Jumping jack"
     };
 
     @Override
@@ -41,10 +42,13 @@ public class DebugmainActivity extends AppCompatActivity implements AdapterView.
 
         switch (position) {
             case 0:
+                intent = new Intent(getApplicationContext(), ShoulderPressActivity.class);
+                break;
+            case 1:
                 intent = new Intent(getApplicationContext(), JumpingJackActivity.class);
                 break;
             default:
-                intent = new Intent(getApplicationContext(), JumpingJackActivity.class);
+                intent = new Intent(getApplicationContext(), ShoulderPressActivity.class);
                 break;
         }
         startActivity(intent);

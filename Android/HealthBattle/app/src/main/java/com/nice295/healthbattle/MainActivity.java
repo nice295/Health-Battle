@@ -1,117 +1,63 @@
+/*
+ * Copyright (C) 2015 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.nice295.healthbattle;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.nice295.healthbattle.Debug.DebugmainActivity;
-import com.nice295.healthbattle.model.User;
+import com.tsengvn.typekit.TypekitContextWrapper;
 
-import de.hdodenhof.circleimageview.CircleImageView;
+import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * TODO
+ */
 public class MainActivity extends BaseActivity {
-    private static final String TAG = "MainActivity";
-
-    private TextView mTvUser;
-    private CircleImageView mIvProfile;
-    private ProgressBar mProgressBar;
-
-    private DatabaseReference mDatabase;
-    private DatabaseReference myRef;
-
-    FirebaseUser mUser;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // views
-        mTvUser = (TextView) findViewById(R.id.tvResult);
-        mIvProfile = (CircleImageView) findViewById(R.id.ivProfile);
-        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        // firebase
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-
-        mUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (mUser == null) {
-            Intent intent = new Intent(getApplicationContext(), FacebookLoginActivity.class);
-            startActivity(intent);
-            finish();
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        if (viewPager != null) {
+            setupViewPager(viewPager);
         }
-    }
 
-    @Override
-    public void onStart() {
-        super.onStart();
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
 
-        mProgressBar.setVisibility(View.VISIBLE);
-
-        mDatabase.child("users").child(mUser.getUid()).addValueEventListener(
-                new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        User user = dataSnapshot.getValue(User.class);
-
-                        if (dataSnapshot.exists()) {
-                            mTvUser.setText("Name: " + user.getUsername() + "\n" +
-                                    "Email: " + user.getEmail() + "\n" +
-                                    "Power " + user.getPower() + "\n" +
-                                    "Skill: " + user.getSkill() + "\n");
-
-                            Glide.with(getApplicationContext())
-                                    .load(user.getImageUrl())
-                                    .into(mIvProfile);
-                        }
-                        else {
-                            Log.d(TAG, "Adding new user info");
-                            writeNewUser(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail(), mUser.getPhotoUrl().toString());
-                        }
-
-                        mProgressBar.setVisibility(View.INVISIBLE);
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        Log.w(TAG, "getUser:onCancelled", databaseError.toException());
-                    }
-                });
-
-        mDatabase.child("counters").child(mUser.getUid()).child("jumping").addValueEventListener(
-                new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()) {
-                            Long count = dataSnapshot.getValue(Long.class);
-                            mTvUser.setText(mTvUser.getText() + "\nJumping : " + count);
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        Log.w(TAG, "Jumping:onCancelled", databaseError.toException());
-                    }
-                });
-    }
-
-    private void writeNewUser(String userId, String name, String email, String imageUrl) {
-        User user = new User(name, email, imageUrl);
-
-        mDatabase.child("users").child(userId).setValue(user);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
     }
 
     @Override
@@ -124,6 +70,10 @@ public class MainActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_logout:
+                Bundle bundle = new Bundle();
+                bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "ACTION");
+                bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "MORE");
+                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
                 signOut();
                 return true;
             case R.id.menu_debug:
@@ -132,6 +82,42 @@ public class MainActivity extends BaseActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void setupViewPager(ViewPager viewPager) {
+        Adapter adapter = new Adapter(getSupportFragmentManager());
+        adapter.addFragment(new WorkoutFragment(), "운동하기");
+        adapter.addFragment(new WorkoutFragment(), "싸움하기");
+        viewPager.setAdapter(adapter);
+    }
+
+    static class Adapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragments = new ArrayList<>();
+        private final List<String> mFragmentTitles = new ArrayList<>();
+
+        public Adapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragments.add(fragment);
+            mFragmentTitles.add(title);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragments.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragments.size();
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitles.get(position);
         }
     }
 }

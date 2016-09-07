@@ -7,14 +7,10 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -26,13 +22,16 @@ import com.google.firebase.database.ValueEventListener;
 import com.nice295.healthbattle.BaseActivity;
 import com.nice295.healthbattle.R;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 /**
  * Created by kyuholee on 2016. 9. 6..
  */
-public class JumpingJackActivity extends BaseActivity
+public class ShoulderPressActivity extends BaseActivity
         implements SensorEventListener {
-    private static final String TAG = "JumpingJackActivity";
+    private static final String TAG = "ShoulderPressActivity";
 
     private TextView mTvResult;
 
@@ -63,7 +62,7 @@ public class JumpingJackActivity extends BaseActivity
      * measured by the Gravity sensor, changes with a variation (delta) > GRAVITY_THRESHOLD,
      * we consider that a successful count.
      */
-    private static final float GRAVITY_THRESHOLD = 7.0f;
+    private static final float GRAVITY_THRESHOLD = 2.0f; //7.0f;
 
     private DatabaseReference mDatabase;
     private DatabaseReference myRef;

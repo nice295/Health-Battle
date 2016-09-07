@@ -1,11 +1,14 @@
 package com.nice295.healthbattle;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.facebook.CallbackManager;
@@ -16,6 +19,7 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.tsengvn.typekit.TypekitContextWrapper;
 
 public class BaseActivity extends AppCompatActivity {
     private static final String TAG = "BaseActivity";
@@ -24,8 +28,14 @@ public class BaseActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         FacebookSdk.sdkInitialize(getApplicationContext());
 
         mAuth = FirebaseAuth.getInstance();

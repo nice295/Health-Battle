@@ -5,12 +5,14 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".HealthBattleApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,6 +27,7 @@
 
         <activity
             android:name=".FacebookLoginActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/FullTheme" >
 
         </activity>
@@ -40,14 +43,27 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar">
         </activity>
 
-        <activity android:name=".Debug.DebugmainActivity"
+        <activity
+            android:name=".Debug.DebugmainActivity"
+            android:screenOrientation="portrait"
             android:label="@string/debug" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
 
-        <activity android:name=".Debug.JumpingJackActivity"
+        <activity
+            android:name=".Debug.ShoulderPressActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/debug" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Debug.DebugmainActivity" />
+        </activity>
+
+        <activity
+            android:name=".Debug.JumpingJackActivity"
+            android:screenOrientation="portrait"
             android:label="@string/debug" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
