@@ -3,6 +3,7 @@ package com.nice295.healthbattle.Debug;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,7 +22,8 @@ public class DebugmainActivity extends BaseActivity implements AdapterView.OnIte
 
     private String[] mStrings = {
             "Shoulder press",
-            "Jumping jack"
+            "Jumping jack",
+            "All members"
     };
 
     @Override
@@ -41,11 +43,14 @@ public class DebugmainActivity extends BaseActivity implements AdapterView.OnIte
         Intent intent;
 
         switch (position) {
-            case 0:
+            case 0: // shoulder press
                 intent = new Intent(getApplicationContext(), ShoulderPressActivity.class);
                 break;
-            case 1:
+            case 1: // jumping jack
                 intent = new Intent(getApplicationContext(), JumpingJackActivity.class);
+                break;
+            case 2: // all members
+                intent = new Intent(getApplicationContext(), AllMembersActivity.class);
                 break;
             default:
                 intent = new Intent(getApplicationContext(), ShoulderPressActivity.class);

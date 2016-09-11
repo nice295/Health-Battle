@@ -5,7 +5,9 @@
     <string name="sign_out">Sign Out</string>
     <string name="loading">Loading…</string>
 
-    <string name="shoulderpress">Shoulder Press</string>
+    <string name="shoulder_press">Shoulder Press</string>
+    <string name="jumping_jack">Jumping Jack</string>
+    <string name="all_member">All member</string>
 
     <!--
     <string name="label_facebook_login">Firebase + Facebook Login</string>
