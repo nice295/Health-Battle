@@ -18,6 +18,7 @@ package com.nice295.healthbattle;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -27,6 +28,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.nice295.healthbattle.Debug.DebugmainActivity;
@@ -34,6 +38,8 @@ import com.tsengvn.typekit.TypekitContextWrapper;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.security.AccessController.getContext;
 
 /**
  * TODO
@@ -56,6 +62,21 @@ public class MainActivity extends BaseActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+        // Change font for tab titles
+        Typeface mTypeface = Typeface.createFromAsset(getAssets(), "BMDOHYEON_ttf.ttf");
+        ViewGroup vg = (ViewGroup) tabLayout.getChildAt(0);
+        int tabsCount = vg.getChildCount();
+        for (int j = 0; j < tabsCount; j++) {
+            ViewGroup vgTab = (ViewGroup) vg.getChildAt(j);
+            int tabChildsCount = vgTab.getChildCount();
+            for (int i = 0; i < tabChildsCount; i++) {
+                View tabViewChild = vgTab.getChildAt(i);
+                if (tabViewChild instanceof TextView) {
+                    ((TextView) tabViewChild).setTypeface(mTypeface, Typeface.NORMAL);
+                }
+            }
+        }
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
     }
@@ -87,8 +108,8 @@ public class MainActivity extends BaseActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
-        adapter.addFragment(new WorkoutFragment(), "운동하기");
-        adapter.addFragment(new WorkoutFragment(), "싸움하기");
+        adapter.addFragment(new WorkoutFragment(), getString(R.string.workout));
+        adapter.addFragment(new WorkoutFragment(), getString(R.string.fight));
         viewPager.setAdapter(adapter);
     }
 
@@ -120,4 +141,5 @@ public class MainActivity extends BaseActivity {
             return mFragmentTitles.get(position);
         }
     }
+
 }

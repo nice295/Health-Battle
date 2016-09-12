@@ -14,7 +14,9 @@
         app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
         tools:layout_constraintLeft_creator="0"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="0dp" />
+        tools:layout_editor_absoluteY="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="4dp" />
 
     <TextView
         android:id="@+id/tvName"

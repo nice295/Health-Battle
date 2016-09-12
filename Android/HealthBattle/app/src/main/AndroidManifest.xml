@@ -56,7 +56,7 @@
         <activity
             android:name=".Debug.ShoulderPressActivity"
             android:screenOrientation="portrait"
-            android:label="@string/shoulderpress" >
+            android:label="@string/shoulder_press" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Debug.DebugmainActivity" />

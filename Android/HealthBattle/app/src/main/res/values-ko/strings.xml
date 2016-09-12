@@ -6,5 +6,9 @@
     <string name="loading">로딩 중…</string>
     <string name="debug">디버그</string>
 
-    <string name="shoulderpress">숄더 프레스</string>
+    <string name="shoulder_press">숄더 프레스</string>
+    <string name="jumping_jack">점핑 잭</string>
+    <string name="all_member">모든 멤버들</string>
+    <string name="workout">운동하기</string>
+    <string name="fight">싸움하기</string>
 </resources>

@@ -4,10 +4,13 @@
     <string name="sign_in">Sign In</string>
     <string name="sign_out">Sign Out</string>
     <string name="loading">Loading…</string>
+    <string name="debug">Debug</string>
 
     <string name="shoulder_press">Shoulder Press</string>
     <string name="jumping_jack">Jumping Jack</string>
     <string name="all_member">All member</string>
+    <string name="workout">Workout</string>
+    <string name="fight">Fight</string>
 
     <!--
     <string name="label_facebook_login">Firebase + Facebook Login</string>

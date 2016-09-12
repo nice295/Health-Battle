@@ -49,6 +49,7 @@ import java.util.List;
 import java.util.Random;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.paperdb.Paper;
 
 public class WorkoutFragment extends Fragment {
     private static final String TAG = "WorkoutFragment";
@@ -81,12 +82,27 @@ public class WorkoutFragment extends Fragment {
             startActivity(intent);
             getActivity().finish();
         }
+
+        // load internally
+        User me = Paper.book().read("me", new User());
+        mTvUser.setText("Name: " + me.getUsername() + "\n" +
+                "Email: " + me.getEmail() + "\n" +
+                "Power " + me.getPower() + "\n" +
+                "Skill: " + me.getSkill() + "\n");
+        Glide.with(getActivity())
+                .load(me.getImageUrl())
+                .into(mIvProfile);
+
         return ll;
     }
 
     @Override
     public void onStart() {
         super.onStart();
+
+        if (mUser == null) {
+            return;
+        }
 
         mProgressBar.setVisibility(View.VISIBLE);
 
@@ -105,8 +121,10 @@ public class WorkoutFragment extends Fragment {
                             Glide.with(getActivity())
                                     .load(user.getImageUrl())
                                     .into(mIvProfile);
-                        }
-                        else {
+
+                            // Save internally
+                            Paper.book().write("me", user);
+                        } else {
                             Log.d(TAG, "Adding new user info");
                             writeNewUser(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail(), mUser.getPhotoUrl().toString());
                         }

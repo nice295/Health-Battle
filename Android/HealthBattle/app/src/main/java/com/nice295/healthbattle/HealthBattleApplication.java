@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.tsengvn.typekit.Typekit;
 
+import io.paperdb.Paper;
+
 /**
  * Created by kyuholee on 2016. 9. 8..
  */
@@ -18,5 +20,8 @@ public class HealthBattleApplication extends Application {
                 .addBoldItalic(Typekit.createFromAsset(this, "BMDOHYEON_ttf.ttf"))
                 .addCustom1(Typekit.createFromAsset(this, "BMDOHYEON_ttf.ttf"))
                 .addCustom2(Typekit.createFromAsset(this, "BMDOHYEON_ttf.ttf"));
+
+
+        Paper.init(getApplicationContext());
     }
 }
