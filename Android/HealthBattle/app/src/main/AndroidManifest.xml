@@ -3,6 +3,7 @@
     package="com.nice295.healthbattle">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:name=".HealthBattleApplication"
@@ -14,6 +15,9 @@
         <activity android:name=".MainActivity"
             android:theme="@style/MainAppTheme"
             android:screenOrientation="portrait"
+            android:launchMode="singleTask"
+            android:taskAffinity=""
+            android:excludeFromRecents="true"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,6 +50,7 @@
 
         <activity
             android:name=".Debug.DebugmainActivity"
+            android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"
             android:label="@string/debug" >
             <meta-data
@@ -55,6 +60,7 @@
 
         <activity
             android:name=".Debug.ShoulderPressActivity"
+            android:parentActivityName=".Debug.DebugmainActivity"
             android:screenOrientation="portrait"
             android:label="@string/shoulder_press" >
             <meta-data
@@ -73,12 +79,25 @@
 
         <activity
             android:name=".Debug.AllMembersActivity"
+            android:parentActivityName=".Debug.DebugmainActivity"
             android:screenOrientation="portrait"
             android:label="@string/all_member" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Debug.DebugmainActivity" />
         </activity>
+
+        <service
+            android:name=".FirebaseBackgroundService"
+            android:exported="false" >
+        </service>
+
+        <receiver android:name=".StartFirebaseAtBoot" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" >
+                </action>
+            </intent-filter>
+        </receiver>
 
     </application>
 

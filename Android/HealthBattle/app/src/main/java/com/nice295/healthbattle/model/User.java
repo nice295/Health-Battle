@@ -36,7 +36,7 @@ public class User {
         return imageUrl;
     }
 
-    public int  getPower() {
+    public int getPower() {
         return power;
     }
 

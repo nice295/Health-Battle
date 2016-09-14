@@ -79,6 +79,9 @@ public class MainActivity extends BaseActivity {
         }
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
+        // Start the    background Firebase activity
+        startService(new Intent(this, FirebaseBackgroundService.class));
     }
 
     @Override

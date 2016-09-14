@@ -100,7 +100,7 @@ public class JumpingJackActivity extends BaseActivity
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
                             Long count = dataSnapshot.getValue(Long.class);
-                              mTvResult.setText(String.valueOf(count));
+                            mTvResult.setText(String.valueOf(count));
                         }
                     }
 

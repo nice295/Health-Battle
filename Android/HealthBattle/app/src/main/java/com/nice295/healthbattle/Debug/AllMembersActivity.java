@@ -23,9 +23,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.nice295.healthbattle.BaseActivity;
 import com.nice295.healthbattle.R;
+import com.nice295.healthbattle.model.Fight;
 import com.nice295.healthbattle.model.User;
 
 import java.util.ArrayList;
+
+import io.paperdb.Paper;
 
 
 /**
@@ -78,6 +81,10 @@ public class AllMembersActivity extends BaseActivity {
                         Log.w(TAG, "getUser:onCancelled", databaseError.toException());
                     }
                 });
+
+        User me = Paper.book().read("me", new User());
+        mDatabase.child("users").child("wMWCQNi1RcOO0kkphX2E2GVG8bC2").child("notification")
+                .setValue(new Fight("new", "ZdjN62uSzDTPygrN9Yae9SdZv0q2", me));
     }
 
     private class ListViewAdapter extends ArrayAdapter<User> {
@@ -88,8 +95,7 @@ public class AllMembersActivity extends BaseActivity {
             this.items = items;
         }
 
-        public class ViewHolder
-        {
+        public class ViewHolder {
             public ImageView ivPic;
             public TextView tvName;
             public TextView tvEmail;
@@ -101,8 +107,8 @@ public class AllMembersActivity extends BaseActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             ViewHolder viewHolder;
 
-            if(convertView == null) {
-                LayoutInflater vi = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            if (convertView == null) {
+                LayoutInflater vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = vi.inflate(R.layout.layout_member_list_item, parent, false);
 
                 viewHolder = new ViewHolder();
@@ -113,9 +119,7 @@ public class AllMembersActivity extends BaseActivity {
                 //viewHolder.tvSkill = (TextView) convertView.findViewById(R.id.tvSkill);
 
                 convertView.setTag(viewHolder);
-            }
-            else
-            {
+            } else {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
 

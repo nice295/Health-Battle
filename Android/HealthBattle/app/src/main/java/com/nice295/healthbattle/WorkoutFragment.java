@@ -110,6 +110,10 @@ public class WorkoutFragment extends Fragment {
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (!dataSnapshot.exists()) {
+                            return;
+                        }
+
                         User user = dataSnapshot.getValue(User.class);
 
                         if (dataSnapshot.exists()) {
