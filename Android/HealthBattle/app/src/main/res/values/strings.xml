@@ -11,6 +11,8 @@
     <string name="all_member">All member</string>
     <string name="workout">Workout</string>
     <string name="fight">Fight</string>
+    <string name="request_title">New fight request</string>
+    <string name="request_description">%s requesting fight with you.</string>
 
     <!--
     <string name="label_facebook_login">Firebase + Facebook Login</string>

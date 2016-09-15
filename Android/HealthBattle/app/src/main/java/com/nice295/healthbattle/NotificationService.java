@@ -84,8 +84,8 @@ public class NotificationService extends Service {
                         .setAutoCancel(true)
                         .setSmallIcon(R.drawable.ic_launcher)
                         .setWhen(System.currentTimeMillis())
-                        .setContentTitle("My notification")
-                        .setContentText(notifString);
+                        .setContentTitle(getString(R.string.request_title))
+                        .setContentText(getString(R.string.request_description, notifString));
         // Creates an explicit intent for an Activity in your app
         Intent resultIntent = new Intent(this, DebugmainActivity.class);
 

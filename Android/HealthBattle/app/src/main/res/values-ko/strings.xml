@@ -11,4 +11,6 @@
     <string name="all_member">모든 멤버들</string>
     <string name="workout">운동하기</string>
     <string name="fight">싸움하기</string>
+    <string name="request_title">새로운 싸움 요청</string>
+    <string name="request_description">%s(이)가 당신에게 싸움을 요청하였습니다.</string>
 </resources>
