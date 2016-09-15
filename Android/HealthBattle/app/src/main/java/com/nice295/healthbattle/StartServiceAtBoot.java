@@ -8,9 +8,9 @@ import android.content.Intent;
  * Created by kyuholee on 2016. 9. 14..
  */
 
-public class StartFirebaseAtBoot extends BroadcastReceiver {
+public class StartServiceAtBoot extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        context.startService(new Intent(context, FirebaseBackgroundService.class));
+        context.startService(new Intent(context, NotificationService.class));
     }
 }

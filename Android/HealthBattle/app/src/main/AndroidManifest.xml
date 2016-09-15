@@ -88,11 +88,11 @@
         </activity>
 
         <service
-            android:name=".FirebaseBackgroundService"
+            android:name=".NotificationService"
             android:exported="false" >
         </service>
 
-        <receiver android:name=".StartFirebaseAtBoot" >
+        <receiver android:name=".StartServiceAtBoot" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" >
                 </action>

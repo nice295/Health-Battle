@@ -16,7 +16,6 @@
 
 package com.nice295.healthbattle;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -34,12 +33,9 @@ import android.widget.TextView;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.nice295.healthbattle.Debug.DebugmainActivity;
-import com.tsengvn.typekit.TypekitContextWrapper;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.security.AccessController.getContext;
 
 /**
  * TODO
@@ -81,7 +77,7 @@ public class MainActivity extends BaseActivity {
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         // Start the    background Firebase activity
-        startService(new Intent(this, FirebaseBackgroundService.class));
+        startService(new Intent(this, NotificationService.class));
     }
 
     @Override

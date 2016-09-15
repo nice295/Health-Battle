@@ -122,7 +122,7 @@ public class WorkoutFragment extends Fragment {
                                     "Power " + user.getPower() + "\n" +
                                     "Skill: " + user.getSkill() + "\n");
 
-                            Glide.with(getActivity())
+                            Glide.with(getContext())
                                     .load(user.getImageUrl())
                                     .into(mIvProfile);
 

@@ -27,9 +27,10 @@ import io.paperdb.Paper;
 /**
  * Created by kyuholee on 2016. 9. 14..
  */
-public class FirebaseBackgroundService extends Service {
-    private static final String TAG = "FirebaseBackgroundService";
+public class NotificationService extends Service {
+    private static final String TAG = "NotificationService";
     private DatabaseReference mDatabase;
+    private FirebaseUser mUser;
 
     @Override
     public IBinder onBind(Intent arg0) {
@@ -41,15 +42,15 @@ public class FirebaseBackgroundService extends Service {
         super.onCreate();
         Log.d(TAG, "Starting Service...");
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user == null) {
+        mUser= FirebaseAuth.getInstance().getCurrentUser();
+        if (mUser == null) {
             Log.d(TAG, "No user...");
             return;
         }
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        Log.d(TAG, "Listening: " + mDatabase.child("users/" + user.getUid() + "/notification"));
-        mDatabase.child("users/" + user.getUid() + "/notification").addValueEventListener(
+        Log.d(TAG, "Listening: " + mDatabase.child("users/" + mUser.getUid() + "/notification"));
+        mDatabase.child("users/" + mUser.getUid() + "/notification").addValueEventListener(
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -60,6 +61,9 @@ public class FirebaseBackgroundService extends Service {
                             if (fight.state.equals("new")) {
                                 postNotif(fight.user.getUsername());
                             }
+
+                            // Clear notification
+                            mDatabase.child("users/" + mUser.getUid() + "/notification").removeValue();
                         }
                     }
 
