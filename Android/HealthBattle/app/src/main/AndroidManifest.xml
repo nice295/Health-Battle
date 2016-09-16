@@ -26,6 +26,28 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".WorkoutActivity"
+            android:theme="@style/MainAppTheme"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/shoulder_press" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+        <activity
+            android:name=".BattleActivity"
+            android:theme="@style/MainAppTheme"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/battle" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />

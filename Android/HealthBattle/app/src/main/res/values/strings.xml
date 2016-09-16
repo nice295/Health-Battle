@@ -10,9 +10,15 @@
     <string name="jumping_jack">Jumping Jack</string>
     <string name="all_member">All member</string>
     <string name="workout">Workout</string>
-    <string name="fight">Fight</string>
+    <string name="battle">Battle</string>
     <string name="request_title">New fight request</string>
     <string name="request_description">%s requesting fight with you.</string>
+    <string name="workout_description">Harder workout, Better life!</string>
+    <string name="workout_hand">Hand raise</string>
+    <string name="workout_leg">Leg raise</string>
+    <string name="squat">Squat</string>
+    <string name="plank">Plank</string>
+    <string name="stretching">Stretching</string>
 
     <!--
     <string name="label_facebook_login">Firebase + Facebook Login</string>

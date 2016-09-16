@@ -19,7 +19,7 @@
         android:layout_marginBottom="4dp" />
 
     <TextView
-        android:id="@+id/tvName"
+        android:id="@+id/tv00"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -38,9 +38,9 @@
         android:text="abc@gmail.com"
         android:textAppearance="@android:style/TextAppearance.Material.Small"
         app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
-        app:layout_constraintLeft_toLeftOf="@+id/tvName"
+        app:layout_constraintLeft_toLeftOf="@+id/tv00"
         app:layout_constraintTop_toTopOf="@+id/constraintLayout"
-        android:layout_below="@+id/tvName"
-        android:layout_alignLeft="@+id/tvName"
-        android:layout_alignStart="@+id/tvName" />
+        android:layout_below="@+id/tv00"
+        android:layout_alignLeft="@+id/tv00"
+        android:layout_alignStart="@+id/tv00" />
 </RelativeLayout>

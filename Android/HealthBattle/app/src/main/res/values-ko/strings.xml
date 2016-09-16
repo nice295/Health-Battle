@@ -10,7 +10,13 @@
     <string name="jumping_jack">점핑 잭</string>
     <string name="all_member">모든 멤버들</string>
     <string name="workout">운동하기</string>
-    <string name="fight">싸움하기</string>
+    <string name="battle">싸움하기</string>
     <string name="request_title">새로운 싸움 요청</string>
     <string name="request_description">%s(이)가 당신에게 싸움을 요청하였습니다.</string>
+    <string name="workout_description">더 빡세게 운동해서, 더 멋지게 살아보자!</string>
+    <string name="workout_hand">팔 올리기</string>
+    <string name="workout_leg">다리 올리기</string>
+    <string name="squat">스쿼트</string>
+    <string name="plank">플랭크</string>
+    <string name="stretching">스크레칭</string>
 </resources>

@@ -14,27 +14,20 @@
  * limitations under the License.
  */
 
-package com.nice295.healthbattle;
+package com.nice295.healthbattle.Fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -42,21 +35,20 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.nice295.healthbattle.model.User;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import com.nice295.healthbattle.FacebookLoginActivity;
+import com.nice295.healthbattle.BattleActivity;
+import com.nice295.healthbattle.Model.User;
+import com.nice295.healthbattle.R;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.paperdb.Paper;
 
-public class WorkoutFragment extends Fragment {
-    private static final String TAG = "WorkoutFragment";
+public class BattleFragment extends Fragment implements View.OnClickListener {
+    private static final String TAG = "FightFragment";
 
-    private TextView mTvUser;
-    private CircleImageView mIvProfile;
-    private ProgressBar mProgressBar;
+    private TextView mTv00;
+    private CircleImageView mIv00;
+    private View mV00;
 
     private FirebaseUser mUser;
 
@@ -65,13 +57,14 @@ public class WorkoutFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        LinearLayout ll = (LinearLayout) inflater.inflate(
+        ScrollView ll = (ScrollView) inflater.inflate(
                 R.layout.fragment_battle, container, false);
 
         // views
-        mTvUser = (TextView) ll.findViewById(R.id.tvResult);
-        mIvProfile = (CircleImageView) ll.findViewById(R.id.ivProfile);
-        mProgressBar = (ProgressBar) ll.findViewById(R.id.progressBar);
+        mTv00 = (TextView) ll.findViewById(R.id.tv00);
+        mIv00 = (CircleImageView) ll.findViewById(R.id.iv00);
+        mV00 = (View) ll.findViewById(R.id.civ00);
+        mV00.setOnClickListener(this);
 
         // firebase
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -85,13 +78,11 @@ public class WorkoutFragment extends Fragment {
 
         // load internally
         User me = Paper.book().read("me", new User());
-        mTvUser.setText("Name: " + me.getUsername() + "\n" +
-                "Email: " + me.getEmail() + "\n" +
-                "Power " + me.getPower() + "\n" +
-                "Skill: " + me.getSkill() + "\n");
+        mTv00.setText(me.getUsername());
+
         Glide.with(getActivity())
                 .load(me.getImageUrl())
-                .into(mIvProfile);
+                .into(mIv00);
 
         return ll;
     }
@@ -104,7 +95,7 @@ public class WorkoutFragment extends Fragment {
             return;
         }
 
-        mProgressBar.setVisibility(View.VISIBLE);
+        //mProgressBar.setVisibility(View.VISIBLE);
 
         mDatabase.child("users").child(mUser.getUid()).addValueEventListener(
                 new ValueEventListener() {
@@ -117,14 +108,11 @@ public class WorkoutFragment extends Fragment {
                         User user = dataSnapshot.getValue(User.class);
 
                         if (dataSnapshot.exists()) {
-                            mTvUser.setText("Name: " + user.getUsername() + "\n" +
-                                    "Email: " + user.getEmail() + "\n" +
-                                    "Power " + user.getPower() + "\n" +
-                                    "Skill: " + user.getSkill() + "\n");
+                            mTv00.setText(user.getUsername());
 
                             Glide.with(getContext())
                                     .load(user.getImageUrl())
-                                    .into(mIvProfile);
+                                    .into(mIv00);
 
                             // Save internally
                             Paper.book().write("me", user);
@@ -133,7 +121,7 @@ public class WorkoutFragment extends Fragment {
                             writeNewUser(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail(), mUser.getPhotoUrl().toString());
                         }
 
-                        mProgressBar.setVisibility(View.INVISIBLE);
+                        //mProgressBar.setVisibility(View.INVISIBLE);
                     }
 
                     @Override
@@ -147,5 +135,13 @@ public class WorkoutFragment extends Fragment {
         User user = new User(name, email, imageUrl);
 
         mDatabase.child("users").child(userId).setValue(user);
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view == mV00) {
+            Intent intent = new Intent(getActivity(), BattleActivity.class);
+            startActivity(intent);
+        }
     }
 }

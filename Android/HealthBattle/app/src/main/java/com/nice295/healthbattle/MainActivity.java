@@ -33,6 +33,8 @@ import android.widget.TextView;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.nice295.healthbattle.Debug.DebugmainActivity;
+import com.nice295.healthbattle.Fragment.BattleFragment;
+import com.nice295.healthbattle.Fragment.WorkoutFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -108,7 +110,7 @@ public class MainActivity extends BaseActivity {
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new WorkoutFragment(), getString(R.string.workout));
-        adapter.addFragment(new WorkoutFragment(), getString(R.string.fight));
+        adapter.addFragment(new BattleFragment(), getString(R.string.battle));
         viewPager.setAdapter(adapter);
     }
 

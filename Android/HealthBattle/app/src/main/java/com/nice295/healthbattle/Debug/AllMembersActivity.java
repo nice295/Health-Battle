@@ -2,7 +2,6 @@ package com.nice295.healthbattle.Debug;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,8 +22,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.nice295.healthbattle.BaseActivity;
 import com.nice295.healthbattle.R;
-import com.nice295.healthbattle.model.Fight;
-import com.nice295.healthbattle.model.User;
+import com.nice295.healthbattle.Model.Fight;
+import com.nice295.healthbattle.Model.User;
 
 import java.util.ArrayList;
 
@@ -113,7 +112,7 @@ public class AllMembersActivity extends BaseActivity {
 
                 viewHolder = new ViewHolder();
                 viewHolder.ivPic = (ImageView) convertView.findViewById(R.id.ivPic);
-                viewHolder.tvName = (TextView) convertView.findViewById(R.id.tvName);
+                viewHolder.tvName = (TextView) convertView.findViewById(R.id.tv00);
                 viewHolder.tvEmail = (TextView) convertView.findViewById(R.id.tvEmail);
                 //viewHolder.tvPower = (TextView) convertView.findViewById(R.id.tvPower);
                 //viewHolder.tvSkill = (TextView) convertView.findViewById(R.id.tvSkill);
