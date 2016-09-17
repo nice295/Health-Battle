@@ -49,7 +49,7 @@ public class BaseActivity extends AppCompatActivity {
                 } else {
                     Log.d(TAG, "onAuthStateChanged:signed_out");
 
-                    Intent intent = new Intent(getApplicationContext(), FacebookLoginActivity.class);
+                    Intent intent = new Intent(BaseActivity.this, FacebookLoginActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     finish();

@@ -12,26 +12,23 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
-            android:theme="@style/MainAppTheme"
-            android:screenOrientation="portrait"
-            android:launchMode="singleTask"
-            android:taskAffinity=""
+        <activity
+            android:name=".MainActivity"
             android:excludeFromRecents="true"
-            android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:taskAffinity=""
+            android:theme="@style/MainAppTheme">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity
             android:name=".WorkoutActivity"
-            android:theme="@style/MainAppTheme"
+            android:label="@string/shoulder_press"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"
-            android:label="@string/shoulder_press" >
+            android:theme="@style/MainAppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
@@ -39,10 +36,10 @@
 
         <activity
             android:name=".BattleActivity"
-            android:theme="@style/MainAppTheme"
+            android:label="@string/battle"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"
-            android:label="@string/battle" >
+            android:theme="@style/MainAppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
@@ -55,7 +52,12 @@
         <activity
             android:name=".FacebookLoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/FullTheme" >
+            android:theme="@style/FullTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
 
@@ -67,14 +69,13 @@
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar">
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
 
         <activity
             android:name=".Debug.DebugmainActivity"
+            android:label="@string/debug"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/debug" >
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
@@ -82,9 +83,9 @@
 
         <activity
             android:name=".Debug.ShoulderPressActivity"
+            android:label="@string/shoulder_press"
             android:parentActivityName=".Debug.DebugmainActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/shoulder_press" >
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Debug.DebugmainActivity" />
@@ -92,8 +93,8 @@
 
         <activity
             android:name=".Debug.JumpingJackActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/jumping_jack" >
+            android:label="@string/jumping_jack"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Debug.DebugmainActivity" />
@@ -101,9 +102,9 @@
 
         <activity
             android:name=".Debug.AllMembersActivity"
+            android:label="@string/all_member"
             android:parentActivityName=".Debug.DebugmainActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/all_member" >
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Debug.DebugmainActivity" />
@@ -111,13 +112,11 @@
 
         <service
             android:name=".NotificationService"
-            android:exported="false" >
-        </service>
+            android:exported="false"></service>
 
-        <receiver android:name=".StartServiceAtBoot" >
+        <receiver android:name=".StartServiceAtBoot">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" >
-                </action>
+                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
             </intent-filter>
         </receiver>
 
