@@ -16,14 +16,29 @@
 
 package com.nice295.healthbattle;
 
+import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.gifdecoder.GifDecoder;
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
- * TODO
+ * Argo.Lee
+ *
  */
 public class BattleActivity extends BaseActivity {
 
+    String imageAssetPath = "dancingbanana.gif";
+ImageView imageview_Battle;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,5 +47,14 @@ public class BattleActivity extends BaseActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        imageview_Battle=(ImageView)findViewById(R.id.imageView_BattleGif);
+        GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(imageview_Battle);
+        Glide.with(this)
+                .load(R.drawable.dancingbanna)
+                .asGif()
+                .crossFade()
+                .into(imageview_Battle);
     }
+
 }
