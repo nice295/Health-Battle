@@ -33,12 +33,12 @@ import java.io.InputStream;
 
 /**
  * Argo.Lee
- *
  */
 public class BattleActivity extends BaseActivity {
 
     String imageAssetPath = "dancingbanana.gif";
-ImageView imageview_Battle;
+    ImageView imageview_Battle;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,13 +48,16 @@ ImageView imageview_Battle;
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        imageview_Battle=(ImageView)findViewById(R.id.imageView_BattleGif);
+        /*
+        FIXME: temporarily blocked
+        imageview_Battle = (ImageView) findViewById(R.id.imageView_BattleGif);
         GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(imageview_Battle);
         Glide.with(this)
-                .load(R.drawable.dancingbanna)
-                .asGif()
-                .crossFade()
-                .into(imageview_Battle);
+            .load(R.drawable.dancingbanna)
+            .asGif()
+            .crossFade()
+            .into(imageview_Battle);
+        */
     }
 
 }
