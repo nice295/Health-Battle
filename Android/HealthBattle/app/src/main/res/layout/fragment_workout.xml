@@ -91,7 +91,7 @@
                     android:layout_height="100dp"
                     android:layout_margin="4dp"
                     android:layout_weight="1"
-                    android:background="#9C27B0"
+                    android:background="@color/material_grey_600"
                     android:elevation="3dp"
                     android:text="@string/workout_hand"
                     android:textColor="@android:color/white"
@@ -103,7 +103,7 @@
                     android:layout_height="100dp"
                     android:layout_margin="4dp"
                     android:layout_weight="1"
-                    android:background="#3F51B5"
+                    android:background="@color/material_grey_600"
                     android:elevation="3dp"
                     android:text="@string/workout_leg"
                     android:textColor="@android:color/white"
@@ -113,118 +113,153 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
-                <TextView
+                <Button
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_margin="4dp"
                     android:layout_weight="1"
-                    android:background="#9C27B0"
-                    android:gravity="center"
+                    android:background="@color/material_grey_600"
+                    android:elevation="3dp"
                     android:text="@string/shoulder_press"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    android:id="@+id/btShoulderPress" />
 
-                <TextView
+                <Button
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_margin="4dp"
                     android:layout_weight="1"
-                    android:background="#3F51B5"
-                    android:gravity="center"
+                    android:background="@color/material_grey_600"
+                    android:elevation="3dp"
                     android:text="@string/squat"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    android:id="@+id/btSquat" />
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
-                <TextView
+                <Button
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_margin="4dp"
                     android:layout_weight="1"
-                    android:background="#9C27B0"
-                    android:gravity="center"
+                    android:background="@color/material_grey_600"
+                    android:elevation="3dp"
                     android:text="@string/plank"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
 
-                <TextView
+                <Button
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_margin="4dp"
                     android:layout_weight="1"
-                    android:background="#3F51B5"
-                    android:gravity="center"
+                    android:background="@color/material_grey_600"
+                    android:elevation="3dp"
                     android:text="@string/stretching"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
-                <TextView
+                <Button
+                    android:id="@+id/btHandRaise"
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_margin="4dp"
                     android:layout_weight="1"
-                    android:background="#9C27B0"
-                    android:gravity="center"
+                    android:background="@color/material_grey_600"
+                    android:elevation="3dp"
                     android:text="@string/workout_hand"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
 
-                <TextView
+                <Button
+                    android:id="@+id/btLegRaise"
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_margin="4dp"
                     android:layout_weight="1"
-                    android:background="#3F51B5"
-                    android:gravity="center"
+                    android:background="@color/material_grey_600"
+                    android:elevation="3dp"
                     android:text="@string/workout_leg"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
-                <TextView
+                <Button
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_margin="4dp"
                     android:layout_weight="1"
-                    android:background="#9C27B0"
-                    android:gravity="center"
+                    android:background="@color/material_grey_600"
+                    android:elevation="3dp"
                     android:text="@string/shoulder_press"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    android:id="@+id/btShoulderPress" />
 
-                <TextView
+                <Button
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_margin="4dp"
                     android:layout_weight="1"
-                    android:background="#3F51B5"
-                    android:gravity="center"
+                    android:background="@color/material_grey_600"
+                    android:elevation="3dp"
                     android:text="@string/squat"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    android:id="@+id/btSquat" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:background="@color/material_grey_600"
+                    android:elevation="3dp"
+                    android:text="@string/plank"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:background="@color/material_grey_600"
+                    android:elevation="3dp"
+                    android:text="@string/stretching"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
+
             </LinearLayout>
 
         </LinearLayout>
