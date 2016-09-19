@@ -6,6 +6,9 @@
     <string name="loading">Loading…</string>
     <string name="debug">Debug</string>
 
+    <string name="power">Power</string>
+    <string name="skill">Skill</string>
+
     <string name="shoulder_press">Shoulder Press</string>
     <string name="jumping_jack">Jumping Jack</string>
     <string name="all_member">All member</string>

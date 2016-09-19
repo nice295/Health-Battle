@@ -38,7 +38,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.nice295.healthbattle.FacebookLoginActivity;
 import com.nice295.healthbattle.BattleActivity;
-import com.nice295.healthbattle.Model.User;
+import com.nice295.healthbattle.model.User;
 import com.nice295.healthbattle.R;
 
 import de.hdodenhof.circleimageview.CircleImageView;

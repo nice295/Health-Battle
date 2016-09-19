@@ -35,28 +35,28 @@
                 android:text="Horace Lee"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-            <TextView
-                android:id="@+id/tvPower"
+            <com.chokobole.view.statusview.StatusViewGroup
+                android:id="@+id/status_view_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/tv00"
-                android:layout_alignStart="@+id/tv00"
-                android:layout_below="@+id/tv00"
-                android:layout_marginTop="8dp"
-                android:text="Power (40)"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/tv00"
+                android:layout_toRightOf="@id/iv00">
 
-            <TextView
-                android:id="@+id/tvSkill"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv00"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_toEndOf="@+id/tvPower"
-                android:layout_toRightOf="@+id/tvPower"
-                android:text="Skill (20)"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+                <com.chokobole.view.statusview.StatusChildView
+                    android:id="@+id/scvPower"
+                    style="@style/StatusViewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/power"/>
+
+                <com.chokobole.view.statusview.StatusChildView
+                    android:id="@+id/scvSkill"
+                    style="@style/StatusViewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/skill"/>
+            </com.chokobole.view.statusview.StatusViewGroup>
 
         </RelativeLayout>
 

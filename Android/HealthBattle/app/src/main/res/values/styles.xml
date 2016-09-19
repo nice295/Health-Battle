@@ -64,4 +64,10 @@
         <item name="android:textSize">36sp</item>
     </style>
 
+    <style name="StatusViewStyle">
+        <item name="android:textColor">#8A000000</item>
+        <item name="android:textSize">14sp</item>
+        <item name="barColor">?attr/colorAccent</item>
+        <item name="barStrokeWidth">10dp</item>
+    </style>
 </resources>

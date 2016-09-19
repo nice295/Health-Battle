@@ -26,10 +26,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.chokobole.view.statusview.StatusChildView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -38,7 +38,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.nice295.healthbattle.FacebookLoginActivity;
-import com.nice295.healthbattle.Model.User;
+import com.nice295.healthbattle.model.User;
 import com.nice295.healthbattle.R;
 import com.nice295.healthbattle.WorkoutActivity;
 
@@ -49,8 +49,8 @@ public class WorkoutFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = "WorkoutFragment";
 
     private TextView mTvUser;
-    private TextView mTvPower;
-    private TextView mTvSkill;
+    private StatusChildView mScvPower;
+    private StatusChildView mScvSkill;
     private CircleImageView mIvProfile;
     //private ProgressBar mProgressBar;
     private Button mBtHandRaise;
@@ -67,8 +67,8 @@ public class WorkoutFragment extends Fragment implements View.OnClickListener {
 
         // views
         mTvUser = (TextView) ll.findViewById(R.id.tv00);
-        mTvPower = (TextView) ll.findViewById(R.id.tvPower);
-        mTvSkill = (TextView) ll.findViewById(R.id.tvSkill);
+        mScvPower = (StatusChildView) ll.findViewById(R.id.scvPower);
+        mScvSkill = (StatusChildView) ll.findViewById(R.id.scvSkill);
         mIvProfile = (CircleImageView) ll.findViewById(R.id.iv00);
         //mProgressBar = (ProgressBar) ll.findViewById(R.id.progressBar);
         mBtHandRaise = (Button) ll.findViewById(R.id.btHandRaise);
@@ -87,8 +87,8 @@ public class WorkoutFragment extends Fragment implements View.OnClickListener {
         // load internally
         User me = Paper.book().read("me", new User());
         mTvUser.setText(me.getUsername());
-        mTvPower.setText( String.valueOf(me.getPower()) );
-        mTvSkill.setText( String.valueOf(me.getSkill()) );
+        mScvPower.setBarLevel(me.getPower());
+        mScvSkill.setBarLevel(me.getSkill());
 
         Glide.with(getActivity())
                 .load(me.getImageUrl())
@@ -119,8 +119,8 @@ public class WorkoutFragment extends Fragment implements View.OnClickListener {
 
                         if (dataSnapshot.exists()) {
                             mTvUser.setText(user.getUsername());
-                            mTvPower.setText( String.valueOf(user.getPower()) );
-                            mTvSkill.setText( String.valueOf(user.getSkill()) );
+                            mScvPower.setBarLevel(user.getPower());
+                            mScvSkill.setBarLevel(user.getSkill());
 
                             Glide.with(getContext())
                                     .load(user.getImageUrl())
