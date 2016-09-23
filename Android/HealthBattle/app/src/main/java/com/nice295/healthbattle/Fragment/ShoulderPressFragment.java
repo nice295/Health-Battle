@@ -76,7 +76,7 @@ public class ShoulderPressFragment extends Fragment
      * measured by the Gravity sensor, changes with a variation (delta) > GRAVITY_THRESHOLD,
      * we consider that a successful count.
      */
-    private static final float GRAVITY_THRESHOLD = 2.0f; //7.0f;
+    private static final float GRAVITY_THRESHOLD = 1.5f; //7.0f;
 
     private DatabaseReference mDatabase;
     private DatabaseReference myRef;
@@ -247,7 +247,8 @@ public class ShoulderPressFragment extends Fragment
 
         } else if (mJumpCounter == 10) {
             //mDatabase.child("users").child(mUser.getUid()).child("power").setValue(mSkill + mJumpCounter);
-            array_nahyeVoice[VOICE_POWER_UP].start();
+            array_nahyeVoice[mJumpCounter - 1].start();
+            //array_nahyeVoice[VOICE_POWER_UP].start();
             mExplainTextView.setVisibility(View.GONE);
             mCounterTextView.setVisibility(View.GONE);
             mFinishImageView.setVisibility(View.VISIBLE);

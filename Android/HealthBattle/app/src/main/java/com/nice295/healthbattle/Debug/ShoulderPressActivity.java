@@ -64,7 +64,7 @@ public class ShoulderPressActivity extends BaseActivity
      * measured by the Gravity sensor, changes with a variation (delta) > GRAVITY_THRESHOLD,
      * we consider that a successful count.
      */
-    private static final float GRAVITY_THRESHOLD = 2.0f; //7.0f;
+    private static final float GRAVITY_THRESHOLD = 1.5f; //7.0f;
 
     private DatabaseReference mDatabase;
     private DatabaseReference myRef;

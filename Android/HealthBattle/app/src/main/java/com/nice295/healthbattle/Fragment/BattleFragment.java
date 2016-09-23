@@ -57,9 +57,6 @@ public class BattleFragment extends Fragment implements View.OnClickListener {
     private RelativeLayout mRL03;
     private RelativeLayout mRL04;
     private RelativeLayout mRL05;
-    private RelativeLayout mRL06;
-    private RelativeLayout mRL07;
-
 
 
     private FirebaseUser mUser;
