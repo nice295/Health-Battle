@@ -16,35 +16,37 @@
 
 package com.nice295.healthbattle;
 
-import android.content.Context;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.gifdecoder.GifDecoder;
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
-
-import java.io.IOException;
-import java.io.InputStream;
+import com.nice295.healthbattle.ui.HPBar;
 
 /**
  * Argo.Lee
  */
 public class BattleActivity extends BaseActivity {
 
-    ImageView imageview_Battle;
-    Button button_Start;
-    boolean button_selected=false;
+    HPBar mHPBar1;
+    HPBar mHPBar2;
+    ImageView mImageView;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_battle);
+        setContentView(R.layout.layout_battle_00);
+
+        mImageView = (ImageView) findViewById(R.id.battle_image_view);
+        mHPBar1 = (HPBar) findViewById(R.id.hpbar1);
+        mHPBar2 = (HPBar) findViewById(R.id.hpbar2);
+
+        GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(mImageView);
+        Glide.with(this)
+            .load(R.drawable.dancingbanna)
+            .asGif()
+            .crossFade()
+            .into(mImageView);
 /*
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -52,32 +54,6 @@ public class BattleActivity extends BaseActivity {
 
         Log.i("test","activity is on");*/
 
-
-        //FIXME: temporarily blocked
-        imageview_Battle = (ImageView) findViewById(R.id.ivBattle);
-        button_Start = (Button) findViewById(R.id.start_battle_btn);
-        button_Start.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(button_selected==false) {
-                    imageview_Battle.setVisibility(View.VISIBLE);
-                    button_selected=true;
-                    button_Start.setText("Done");
-                }else
-                {
-                    imageview_Battle.setVisibility(View.GONE);
-                    button_selected=false;
-                    button_Start.setText("Start");
-                }
-
-            }
-        });
-        GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(imageview_Battle);
-        Glide.with(this)
-                .load(R.drawable.dancingbanna)
-                .asGif()
-                .crossFade()
-                .into(imageview_Battle);
 
     }
 

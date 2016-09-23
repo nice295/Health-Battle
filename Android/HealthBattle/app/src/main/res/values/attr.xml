@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="HPBar">
+        <attr name="barColor" format="reference|color"/>
+        <attr name="barStrokeWidth" format="dimension"/>
+        <attr name="barLevel" format="integer"/>
+        <attr name="ltr" format="boolean"/>
+    </declare-styleable>
+</resources>
