@@ -17,6 +17,13 @@ import com.nice295.healthbattle.R;
  */
 
 public class HPBar extends View {
+    public interface HPBarListener {
+        void onFullCharged();
+        void onEmpty();
+    }
+
+    private HPBarListener mHPBarListener;
+
     private Paint mBarPaint;
     private int mBarStrokeWidth;
     private int mBarLevel;
@@ -124,7 +131,7 @@ public class HPBar extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        int delay = 20;
+        int delay = 50;
         if (mLtr) {
             if (mBarCurWidth < mBarWidth) {
                 mBarCurWidth += 10;
@@ -145,6 +152,14 @@ public class HPBar extends View {
                 postInvalidateDelayed(delay);
             } else {
                 canvas.drawLine(mBarOffsetX, mCenterY, mBarOffsetX + mBarWidth, mCenterY, mBarPaint);
+                if (mHPBarListener == null)
+                    return;
+
+                if (mBarLevel == 0) {
+                    mHPBarListener.onEmpty();
+                } else if (mBarLevel == 100){
+                    mHPBarListener.onFullCharged();
+                }
             }
         } else {
             if (mBarCurWidth < mBarWidth) {
@@ -165,6 +180,14 @@ public class HPBar extends View {
                 postInvalidateDelayed(delay);
             } else {
                 canvas.drawLine(getWidth() - mBarOffsetX, mCenterY, getWidth() - mBarOffsetX - mBarWidth, mCenterY, mBarPaint);
+                if (mHPBarListener == null)
+                    return;
+
+                if (mBarLevel == 0) {
+                    mHPBarListener.onEmpty();
+                } else if (mBarLevel == 100){
+                    mHPBarListener.onFullCharged();
+                }
             }
         }
     }
@@ -180,5 +203,9 @@ public class HPBar extends View {
 
     public int getBarLevel() {
         return mBarLevel;
+    }
+
+    public void setHPFullListener(HPBarListener hpBarListener) {
+        mHPBarListener = hpBarListener;
     }
 }

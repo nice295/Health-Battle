@@ -16,10 +16,18 @@
 
 package com.nice295.healthbattle;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
+import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -30,7 +38,7 @@ import com.nice295.healthbattle.ui.HPBar;
 /**
  * Argo.Lee
  */
-public class BattleActivity extends BaseActivity implements View.OnClickListener {
+public class BattleActivity extends BaseActivity implements View.OnClickListener, HPBar.HPBarListener {
     private LinearLayout mLl00;
     private LinearLayout mLl01;
     private LinearLayout mLlWin;
@@ -39,6 +47,8 @@ public class BattleActivity extends BaseActivity implements View.OnClickListener
     HPBar mHPBar1;
     HPBar mHPBar2;
     ImageView mImageView;
+    ImageView mFightTextImageView;
+    private Animation mAnimation;
 
     private Button mbtStart;
 
@@ -60,8 +70,56 @@ public class BattleActivity extends BaseActivity implements View.OnClickListener
         mHPBar1 = (HPBar) findViewById(R.id.hpbar1);
         mHPBar2 = (HPBar) findViewById(R.id.hpbar2);
 
+        mHPBar1.setHPFullListener(this);
+
         mbtStart = (Button) findViewById(R.id.btStart);
         mbtStart.setOnClickListener(this);
+
+        final int hpbar[] = new int[]{
+            80, 80, 60, 20, 10
+        };
+        final int hpbar2[] = new int[]{
+            90, 70, 50, 30, 0
+        };
+
+        final Handler handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                int index = msg.what;
+                mHPBar1.setBarLevel(hpbar[index]);
+                mHPBar2.setBarLevel(hpbar2[index]);
+
+                if (index == 4) {
+                    mLl01.setVisibility(View.GONE);
+                    mLlWin.setVisibility(View.VISIBLE);
+                    return;
+                }
+
+                sendEmptyMessageDelayed(index + 1, 1000l);
+            }
+        };
+
+        mFightTextImageView = (ImageView) findViewById(R.id.fight_text_image_view);
+        mFightTextImageView.setVisibility(View.GONE);
+        mAnimation = AnimationUtils.loadAnimation(this, R.anim.scale_up);
+        mAnimation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                Log.d("BATTLE", "end");
+                mFightTextImageView.setVisibility(View.GONE);
+                handler.sendEmptyMessageDelayed(0, 1000l);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
 
         GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(mImageView);
         Glide.with(this)
@@ -83,5 +141,16 @@ public class BattleActivity extends BaseActivity implements View.OnClickListener
             mLl00.setVisibility(View.GONE);
             mLl01.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    public void onFullCharged() {
+        mFightTextImageView.setVisibility(View.VISIBLE);
+        mFightTextImageView.startAnimation(mAnimation);
+    }
+
+    @Override
+    public void onEmpty() {
+
     }
 }
