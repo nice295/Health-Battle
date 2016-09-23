@@ -99,7 +99,8 @@ public class ShoulderPressFragment extends Fragment
         mFinishImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "Clicked",Toast.LENGTH_SHORT).show();;
+                Toast.makeText(getContext(), "Clicked", Toast.LENGTH_SHORT).show();
+                ;
                 getActivity().finish();
 
             }
@@ -205,6 +206,35 @@ public class ShoulderPressFragment extends Fragment
         super.onPause();
         mSensorManager.unregisterListener(this);
         Log.d(TAG, "Unregistered for sensor events");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        mJumpCounter = 0;
+
+        array_nahyeVoice[0].release();
+        array_nahyeVoice[1].release();
+        array_nahyeVoice[2].release();
+        array_nahyeVoice[3].release();
+        array_nahyeVoice[4].release();
+        array_nahyeVoice[5].release();
+        array_nahyeVoice[6].release();
+        array_nahyeVoice[7].release();
+        array_nahyeVoice[8].release();
+        array_nahyeVoice[9].release();
+        array_nahyeVoice[VOICE_7_SUB].release();
+        array_nahyeVoice[VOICE_POWER_UP].release();
+        array_nahyeVoice[VOICE_SKILL_UP].release();
+        array_nahyeVoice[VOICE_START].release();
+    }
+
+    @Override
+    public void onDestroyView() {
+        mDatabase.onDisconnect();
+
+        super.onDestroyView();
     }
 
     @Override

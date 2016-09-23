@@ -56,7 +56,7 @@ count = new TextLayer
     
 count.centerX()
 
-firebase.onChange "/counters/rWjjVsvGDPTCTAg6U8U6jFXXnBQ2/jumping", (value) ->
+firebase.onChange "/counters/wMWCQNi1RcOO0kkphX2E2GVG8bC2/jumping", (value) ->
 	#print value
 	#count.text = value
 	if value == 0
