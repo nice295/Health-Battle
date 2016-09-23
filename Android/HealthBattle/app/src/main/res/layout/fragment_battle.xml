@@ -10,44 +10,279 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textSize="50dp"
+            android:gravity="center"
+            android:text="Fight"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textSize="50dp"
+            android:gravity="center"
+            android:text="Your Friends"
+            />
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <View
-                android:id="@+id/civ00"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="false"
-                android:layout_centerInParent="true"
-                android:layout_centerVertical="false"
-                android:background="@drawable/circle" />
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/iv00"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_alignEnd="@+id/civ00"
-                android:layout_alignParentBottom="true"
-                android:layout_alignRight="@+id/civ00"
-                android:layout_centerInParent="false"
-                android:src="@drawable/ic_person_white" />
-
-            <TextView
-                android:id="@+id/tv00"
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/civ00"
-                android:layout_alignRight="@+id/civ00"
-                android:layout_centerInParent="true"
-                android:layout_centerVertical="true"
-                android:text="Horace Lee"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@android:color/white" />
+                android:layout_margin="16dp"
+                android:id="@+id/relativeLayout01">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv00"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="false"
+                    android:layout_centerInParent="true"
+                    android:layout_centerVertical="false"
+                    android:background="@drawable/circle" />
+
+                <View
+                    android:id="@+id/civ00"
+                    android:layout_width="40dp"
+                    android:layout_height="70dp"
+                    android:layout_alignEnd="@+id/iv00"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignRight="@+id/iv00"
+                    android:layout_centerInParent="false"
+                    android:background="@drawable/img_battle_avatar" />
+
+                <TextView
+                    android:id="@+id/tv00"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/civ00"
+                    android:layout_alignRight="@+id/civ00"
+                    android:layout_centerInParent="true"
+                    android:layout_centerVertical="true"
+                    android:text="Horace Lee"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@android:color/white" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/relativeLayout02"
+                android:layout_alignTop="@+id/relativeLayout01"
+                android:layout_toRightOf="@+id/relativeLayout01"
+                android:layout_toEndOf="@+id/relativeLayout01">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv02"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="false"
+                    android:layout_centerInParent="true"
+                    android:layout_centerVertical="false"
+                    android:background="@drawable/circle" />
+
+                <View
+                    android:id="@+id/civ02"
+                    android:layout_width="20dp"
+                    android:layout_height="30dp"
+                    android:layout_alignEnd="@+id/iv02"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignRight="@+id/iv02"
+                    android:layout_centerInParent="false"
+                    android:background="@drawable/img_battle_avatar" />
+
+                <TextView
+                    android:id="@+id/tv02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/civ02"
+                    android:layout_alignRight="@+id/civ02"
+                    android:layout_centerInParent="true"
+                    android:layout_centerVertical="true"
+                    android:text="Jongdo"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@android:color/white" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/relativeLayout03"
+                android:layout_alignTop="@+id/relativeLayout02"
+                android:layout_toRightOf="@+id/relativeLayout02"
+                android:layout_toEndOf="@+id/relativeLayout02">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv03"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="@drawable/circle"
+                    android:layout_below="@+id/tv03"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <View
+                    android:id="@+id/civ03"
+                    android:layout_width="25dp"
+                    android:layout_height="60dp"
+                    android:layout_alignEnd="@+id/iv03"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignRight="@+id/iv03"
+                    android:layout_centerInParent="false"
+                    android:background="@drawable/img_battle_avatar" />
+
+                <TextView
+                    android:id="@+id/tv03"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/civ03"
+                    android:layout_alignRight="@+id/civ03"
+                    android:layout_centerInParent="true"
+                    android:layout_centerVertical="true"
+                    android:text="Jiyeon"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@android:color/white" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/relativeLayout04"
+                android:layout_below="@+id/relativeLayout03"
+                android:layout_toLeftOf="@+id/relativeLayout03"
+                android:layout_toStartOf="@+id/relativeLayout03">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv04"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:background="@drawable/circle"
+                    android:layout_below="@+id/tv04"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <View
+                    android:id="@+id/civ04"
+                    android:layout_width="40dp"
+                    android:layout_height="70dp"
+                    android:layout_alignEnd="@+id/iv04"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignRight="@+id/iv04"
+                    android:layout_centerInParent="false"
+                    android:background="@drawable/img_battle_avatar" />
+
+                <TextView
+                    android:id="@+id/tv04"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/civ04"
+                    android:layout_alignRight="@+id/civ04"
+                    android:layout_centerInParent="true"
+                    android:layout_centerVertical="true"
+                    android:text="Nahye Kim"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@android:color/white" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/relativeLayout05"
+                android:layout_below="@+id/relativeLayout01"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="44dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv05"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="@drawable/circle"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginLeft="23dp"
+                    android:layout_marginStart="23dp" />
+
+                <View
+                    android:id="@+id/civ05"
+                    android:layout_width="27dp"
+                    android:layout_height="55dp"
+                    android:layout_alignEnd="@+id/iv05"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignRight="@+id/iv05"
+                    android:layout_centerInParent="false"
+                    android:background="@drawable/img_battle_avatar" />
+
+                <TextView
+                    android:id="@+id/tv05"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/civ05"
+                    android:layout_alignRight="@+id/civ05"
+                    android:layout_centerInParent="true"
+                    android:layout_centerVertical="true"
+                    android:text="Horace Lee"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@android:color/white" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/relativeLayout06"
+                android:layout_below="@+id/relativeLayout01"
+                android:layout_alignRight="@+id/relativeLayout03"
+                android:layout_alignEnd="@+id/relativeLayout03">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv06"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/circle"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginLeft="23dp"
+                    android:layout_marginStart="23dp" />
+
+                <View
+                    android:id="@+id/civ06"
+                    android:layout_width="25dp"
+                    android:layout_height="40dp"
+                    android:layout_alignEnd="@+id/iv06"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignRight="@+id/iv06"
+                    android:layout_centerInParent="false"
+                    android:background="@drawable/img_battle_avatar" />
+
+                <TextView
+                    android:id="@+id/tv06"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/civ06"
+                    android:layout_alignRight="@+id/civ06"
+                    android:layout_centerVertical="true"
+                    android:text="Kim"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@android:color/white"
+                    android:layout_alignLeft="@+id/iv06"
+                    android:layout_alignStart="@+id/iv06" />
+
+            </RelativeLayout>
 
         </RelativeLayout>
     </LinearLayout>

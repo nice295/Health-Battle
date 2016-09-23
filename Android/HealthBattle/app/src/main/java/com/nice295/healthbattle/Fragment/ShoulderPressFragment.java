@@ -100,7 +100,7 @@ public class ShoulderPressFragment extends Fragment
             @Override
             public void onClick(View view) {
                 Toast.makeText(getContext(), "Clicked",Toast.LENGTH_SHORT).show();;
-                getActivity().getFragmentManager().popBackStack();
+                getActivity().finish();
 
             }
         });
@@ -257,7 +257,7 @@ public class ShoulderPressFragment extends Fragment
             return;
         }
 
-
+/*
         if (mJumpCounter == 7) {
             try {
                 Thread.sleep(2000);
@@ -266,16 +266,7 @@ public class ShoulderPressFragment extends Fragment
             }
             array_nahyeVoice[VOICE_7_SUB].start();
 
-        } else if (mJumpCounter == 10) {
-
-            try {
-                Thread.sleep(1000);
-            } catch (Exception e) {
-
-            }
-
-
-        }
+        }*/
 
         // Set value to Firebase database
         //mDatabase.child("counters").child(mUser.getUid()).child("jumping").setValue(mJumpCounter);
