@@ -25,6 +25,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -50,6 +51,16 @@ public class BattleFragment extends Fragment implements View.OnClickListener {
     private TextView mTv00;
     private CircleImageView mIv00;
     private View mV00;
+    private RelativeLayout mRL00;
+    private RelativeLayout mRL01;
+    private RelativeLayout mRL02;
+    private RelativeLayout mRL03;
+    private RelativeLayout mRL04;
+    private RelativeLayout mRL05;
+    private RelativeLayout mRL06;
+    private RelativeLayout mRL07;
+
+
 
     private FirebaseUser mUser;
 
@@ -66,6 +77,20 @@ public class BattleFragment extends Fragment implements View.OnClickListener {
         mIv00 = (CircleImageView) ll.findViewById(R.id.iv00);
         mV00 = (View) ll.findViewById(R.id.civ00);
         mV00.setOnClickListener(this);
+
+        mRL00 = (RelativeLayout)  ll .findViewById(R.id.relativeLayout01);
+        mRL01 = (RelativeLayout)  ll .findViewById(R.id.relativeLayout02);
+        mRL02 = (RelativeLayout)  ll .findViewById(R.id.relativeLayout03);
+        mRL03 = (RelativeLayout)  ll .findViewById(R.id.relativeLayout04);
+        mRL04 = (RelativeLayout)  ll .findViewById(R.id.relativeLayout05);
+        mRL05 = (RelativeLayout)  ll .findViewById(R.id.relativeLayout06);
+        mRL00.setOnClickListener(this);
+        mRL01.setOnClickListener(this);
+        mRL02.setOnClickListener(this);
+        mRL03.setOnClickListener(this);
+        mRL04.setOnClickListener(this);
+        mRL05.setOnClickListener(this);
+
 
         // firebase
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -140,9 +165,9 @@ public class BattleFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        if (view == mV00) {
+
             Intent intent = new Intent(getActivity(), BattleActivity.class);
             startActivity(intent);
-        }
+
     }
 }
