@@ -5,6 +5,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -38,6 +39,11 @@ public class ShoulderPressFragment extends Fragment
     implements SensorEventListener {
     private static final String TAG = "ShoulderPressActivity";
 
+    private static final int VOICE_7_SUB =10;
+    private static final int VOICE_POWER_UP =11;
+    private static final int VOICE_SKILL_UP =12;
+    private static final int VOICE_START =13;
+
     private long mLastTime = 0;
     private boolean mUp = false;
     private int mJumpCounter = 0;
@@ -49,6 +55,7 @@ public class ShoulderPressFragment extends Fragment
     private SensorManager mSensorManager;
     private Sensor mSensor;
 
+    private MediaPlayer array_nahyeVoice[];
     /**
      * How long to keep the screen on when no activity is happening
      **/
@@ -116,6 +123,26 @@ public class ShoulderPressFragment extends Fragment
                     Log.w(TAG, "Jumping:onCancelled", databaseError.toException());
                 }
             });
+
+
+        //VOICE
+        array_nahyeVoice= new MediaPlayer[20];
+        array_nahyeVoice[0]= MediaPlayer.create(getContext(), R.raw.workout_1);
+        array_nahyeVoice[1]= MediaPlayer.create(getContext(), R.raw.workout_2);
+        array_nahyeVoice[2]= MediaPlayer.create(getContext(), R.raw.workout_3);
+        array_nahyeVoice[3]= MediaPlayer.create(getContext(), R.raw.workout_4);
+        array_nahyeVoice[4]= MediaPlayer.create(getContext(), R.raw.workout_5);
+        array_nahyeVoice[5]= MediaPlayer.create(getContext(), R.raw.workout_6);
+        array_nahyeVoice[6]= MediaPlayer.create(getContext(), R.raw.workout_7);
+        array_nahyeVoice[7]= MediaPlayer.create(getContext(), R.raw.workout_8);
+        array_nahyeVoice[8]= MediaPlayer.create(getContext(), R.raw.workout_9);
+        array_nahyeVoice[9]= MediaPlayer.create(getContext(), R.raw.workout_10);
+        array_nahyeVoice[VOICE_7_SUB] =MediaPlayer.create(getContext(), R.raw.workout_7_sub);
+        array_nahyeVoice[VOICE_POWER_UP] =MediaPlayer.create(getContext(), R.raw.workout_powerup);
+        array_nahyeVoice[VOICE_SKILL_UP] =MediaPlayer.create(getContext(), R.raw.workout_skillup);
+        array_nahyeVoice[VOICE_START] =MediaPlayer.create(getContext(), R.raw.workout_start);;
+
+        array_nahyeVoice[VOICE_START].start();
     }
 
 
@@ -161,6 +188,30 @@ public class ShoulderPressFragment extends Fragment
             return;
         }
         mJumpCounter++;
+
+
+        if(mJumpCounter<10)
+            array_nahyeVoice[mJumpCounter-1].start();
+
+        if(mJumpCounter==7) {
+            try {
+                Thread.sleep(2000);
+            }catch (Exception e){
+
+            }
+            array_nahyeVoice[VOICE_7_SUB].start();
+
+        }
+        else if(mJumpCounter==10) {
+
+            try {
+                Thread.sleep(1000);
+            }catch (Exception e){
+
+            }
+            array_nahyeVoice[VOICE_POWER_UP].start();
+
+        }
 
         // Set value to Firebase database
         mDatabase.child("counters").child(mUser.getUid()).child("jumping").setValue(mJumpCounter);
