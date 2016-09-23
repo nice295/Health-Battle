@@ -32,6 +32,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.nice295.healthbattle.Debug.DebugmainActivity;
 
 import java.util.ArrayList;
@@ -41,11 +45,18 @@ import java.util.List;
  * TODO
  */
 public class WorkoutActivity extends BaseActivity {
+    private DatabaseReference mDatabase;
+    private FirebaseUser mUser;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout);
+
+        // firebase
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mUser = FirebaseAuth.getInstance().getCurrentUser();
+        mDatabase.child("counters").child(mUser.getUid()).child("jumping").setValue(0);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
