@@ -25,6 +25,7 @@
 
     <string name="should_press_start_button_text">START</string>
     <string name="should_press_start_helper_text">Start like this</string>
+    <string name="bigmatch">Big Match</string>
 
     <!--
     <string name="label_facebook_login">Firebase + Facebook Login</string>

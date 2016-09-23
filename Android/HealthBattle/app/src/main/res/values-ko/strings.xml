@@ -22,4 +22,5 @@
 
     <string name="should_press_start_button_text">START</string>
     <string name="should_press_start_helper_text">그림과 같이 10회 반복하세요.</string>
+    <string name="bigmatch">빅매치</string>
 </resources>

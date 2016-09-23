@@ -3,6 +3,35 @@
 
 if (!window.Framer && window._bridge) {window._bridge('runtime.error', {message:'[framer.js] Framer library missing or corrupt. Select File → Update Framer Library.'})}
 window.__imported__ = window.__imported__ || {};
+window.__imported__["web@1x/layers.json.js"] = [
+	{
+		"objectId": "542FEC71-AD3E-4048-B655-AE3C70DD4AA7",
+		"kind": "artboard",
+		"name": "Desktop",
+		"originalName": "Desktop",
+		"maskFrame": null,
+		"layerFrame": {
+			"x": 0,
+			"y": 0,
+			"width": 500,
+			"height": 500
+		},
+		"visible": true,
+		"metadata": {},
+		"backgroundColor": "rgba(255, 255, 255, 1)",
+		"image": {
+			"path": "images/Layer-Desktop-ntqyrkvd.jpg",
+			"frame": {
+				"x": 0,
+				"y": 0,
+				"width": 500,
+				"height": 500
+			}
+		},
+		"children": []
+	}
+]
+window.__imported__ = window.__imported__ || {};
 window.__imported__["sketch-firebase@4x/layers.json.js"] = [
 	{
 		"objectId": "B61F34A6-3C13-4F66-8D49-25BB354101B4",
@@ -1058,35 +1087,6 @@ window.__imported__["sketch-firebase@4x/layers.json.js"] = [
 			}
 		],
 		"time": 2014
-	}
-]
-window.__imported__ = window.__imported__ || {};
-window.__imported__["web@1x/layers.json.js"] = [
-	{
-		"objectId": "542FEC71-AD3E-4048-B655-AE3C70DD4AA7",
-		"kind": "artboard",
-		"name": "Desktop",
-		"originalName": "Desktop",
-		"maskFrame": null,
-		"layerFrame": {
-			"x": 0,
-			"y": 0,
-			"width": 500,
-			"height": 500
-		},
-		"visible": true,
-		"metadata": {},
-		"backgroundColor": "rgba(255, 255, 255, 1)",
-		"image": {
-			"path": "images/Layer-Desktop-ntqyrkvd.jpg",
-			"frame": {
-				"x": 0,
-				"y": 0,
-				"width": 500,
-				"height": 500
-			}
-		},
-		"children": []
 	}
 ]
 window.__imported__ = window.__imported__ || {};
