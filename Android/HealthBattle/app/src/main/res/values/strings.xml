@@ -23,6 +23,9 @@
     <string name="plank">Plank</string>
     <string name="stretching">Stretching</string>
 
+    <string name="should_press_start_button_text">START</string>
+    <string name="should_press_start_helper_text">Start like this</string>
+
     <!--
     <string name="label_facebook_login">Firebase + Facebook Login</string>
     <string name="desc_facebook_login">Use a Facebook Login credential to authenticate with Firebase.</string>

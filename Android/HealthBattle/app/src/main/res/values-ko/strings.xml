@@ -19,4 +19,7 @@
     <string name="squat">스쿼트</string>
     <string name="plank">플랭크</string>
     <string name="stretching">스크레칭</string>
+
+    <string name="should_press_start_button_text">START</string>
+    <string name="should_press_start_helper_text">그림과 같이 10회 반복하세요.</string>
 </resources>

@@ -37,6 +37,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.nice295.healthbattle.Debug.DebugmainActivity;
+import com.nice295.healthbattle.Fragment.ShoulderPressFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,5 +62,13 @@ public class WorkoutActivity extends BaseActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment fragment = fm.findFragmentById(R.id.workout_fragment_container);
+        if (fragment == null) {
+            fm.beginTransaction()
+                .replace(R.id.workout_fragment_container, new ShoulderPressFragment())
+                .commit();
+        }
     }
 }
