@@ -5,10 +5,12 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.Image;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -81,7 +83,10 @@ public class ShoulderPressFragment extends Fragment
     private FirebaseUser mUser;
 
     private ImageView mHelperImageView;
+    private ImageView mFinishImageView;
     private TextView mCounterTextView;
+    private TextView mExplainTextView;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -89,7 +94,16 @@ public class ShoulderPressFragment extends Fragment
 
         mHelperImageView = (ImageView) view.findViewById(R.id.should_press_image_view);
         mCounterTextView = (TextView) view.findViewById(R.id.should_press_count_text_view);
+        mExplainTextView = (TextView) view.findViewById(R.id.should_press_explain_text_view);
+        mFinishImageView = (ImageView) view.findViewById(R.id.should_press_fin_image_view);
+        mFinishImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(), "Clicked",Toast.LENGTH_SHORT).show();;
+                getActivity().getFragmentManager().popBackStack();
 
+            }
+        });
         init();
 
         return view;
@@ -234,6 +248,10 @@ public class ShoulderPressFragment extends Fragment
         } else if (mJumpCounter == 10) {
             //mDatabase.child("users").child(mUser.getUid()).child("power").setValue(mSkill + mJumpCounter);
             array_nahyeVoice[VOICE_POWER_UP].start();
+            mExplainTextView.setVisibility(View.GONE);
+            mCounterTextView.setVisibility(View.GONE);
+            mFinishImageView.setVisibility(View.VISIBLE);
+
             return;
         } else {
             return;
