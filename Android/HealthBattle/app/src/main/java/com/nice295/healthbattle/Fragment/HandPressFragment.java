@@ -1,4 +1,4 @@
-package com.nice295.healthbattle.Debug;
+package com.nice295.healthbattle.Fragment;
 
 import android.content.Context;
 import android.hardware.Sensor;
@@ -8,9 +8,13 @@ import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.widget.Toolbar;
+import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,21 +25,22 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.nice295.healthbattle.BaseActivity;
 import com.nice295.healthbattle.R;
 
-import java.util.Timer;
 import java.util.TimerTask;
 
-
 /**
- * Created by kyuholee on 2016. 9. 6..
+ * Created by chokobole on 2016. 9. 23..
  */
-public class ShoulderPressActivity extends BaseActivity
+
+public class HandPressFragment extends Fragment
         implements SensorEventListener {
     private static final String TAG = "ShoulderPressActivity";
 
-    private TextView mTvResult;
+    private static final int VOICE_7_SUB = 10;
+    private static final int VOICE_POWER_UP = 11;
+    private static final int VOICE_SKILL_UP = 12;
+    private static final int VOICE_START = 13;
 
     private long mLastTime = 0;
     private boolean mUp = false;
@@ -43,11 +48,14 @@ public class ShoulderPressActivity extends BaseActivity
     private int mSkill = 0;
 
 
+
+    private TimerTask mTimerTask;
     private Handler mHandler;
 
     private SensorManager mSensorManager;
     private Sensor mSensor;
 
+    private MediaPlayer array_nahyeVoice[];
     /**
      * How long to keep the screen on when no activity is happening
      **/
@@ -70,30 +78,35 @@ public class ShoulderPressActivity extends BaseActivity
     private DatabaseReference myRef;
     private FirebaseUser mUser;
 
-
+    private ImageView mHelperImageView;
+    private TextView mCounterTextView;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_debugworkout);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_should_press, container, false);
 
-        mTvResult = (TextView) findViewById(R.id.tvResult);
+        mHelperImageView = (ImageView) view.findViewById(R.id.should_press_image_view);
+        mCounterTextView = (TextView) view.findViewById(R.id.should_press_count_text_view);
 
+        init();
 
+        return view;
+    }
 
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    private void init() {
+        getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         mHandler = new Handler();
-        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+
+        mSensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
 
-        // firebase
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         if (mUser == null) {
-            Toast.makeText(this, "No user loggin.",
-                    Toast.LENGTH_SHORT).show();
-            finish();
+            Toast.makeText(getContext(), "First logout please", Toast.LENGTH_LONG).show();
         }
+
+        mDatabase.child("counters").child(mUser.getUid()).child("jumping").setValue(0);
 
         mDatabase.child("users").child(mUser.getUid()).child("power").addValueEventListener(
                 new ValueEventListener() {
@@ -112,17 +125,14 @@ public class ShoulderPressActivity extends BaseActivity
                     }
                 });
 
-        mDatabase.child("counters").child(mUser.getUid()).child("jumping").setValue(0);
-
         mDatabase.child("counters").child(mUser.getUid()).child("jumping").addValueEventListener(
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
                             Long count = dataSnapshot.getValue(Long.class);
-                            mTvResult.setText(String.valueOf(count));
+                            mCounterTextView.setText(String.valueOf(count));
                             mJumpCounter = count.intValue();
-
                         }
                     }
 
@@ -131,10 +141,32 @@ public class ShoulderPressActivity extends BaseActivity
                         Log.w(TAG, "Jumping:onCancelled", databaseError.toException());
                     }
                 });
+
+
+        //VOICE
+        array_nahyeVoice = new MediaPlayer[20];
+        array_nahyeVoice[0] = MediaPlayer.create(getContext(), R.raw.workout_1);
+        array_nahyeVoice[1] = MediaPlayer.create(getContext(), R.raw.workout_2);
+        array_nahyeVoice[2] = MediaPlayer.create(getContext(), R.raw.workout_3);
+        array_nahyeVoice[3] = MediaPlayer.create(getContext(), R.raw.workout_4);
+        array_nahyeVoice[4] = MediaPlayer.create(getContext(), R.raw.workout_5);
+        array_nahyeVoice[5] = MediaPlayer.create(getContext(), R.raw.workout_6);
+        array_nahyeVoice[6] = MediaPlayer.create(getContext(), R.raw.workout_7);
+        array_nahyeVoice[7] = MediaPlayer.create(getContext(), R.raw.workout_8);
+        array_nahyeVoice[8] = MediaPlayer.create(getContext(), R.raw.workout_9);
+        array_nahyeVoice[9] = MediaPlayer.create(getContext(), R.raw.workout_10);
+        array_nahyeVoice[VOICE_7_SUB] = MediaPlayer.create(getContext(), R.raw.workout_7_sub);
+        array_nahyeVoice[VOICE_POWER_UP] = MediaPlayer.create(getContext(), R.raw.workout_powerup);
+        array_nahyeVoice[VOICE_SKILL_UP] = MediaPlayer.create(getContext(), R.raw.workout_skillup);
+        array_nahyeVoice[VOICE_START] = MediaPlayer.create(getContext(), R.raw.workout_start);
+        ;
+
+        array_nahyeVoice[VOICE_START].start();
     }
 
+
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         if (mSensorManager.registerListener(this, mSensor,
                 SensorManager.SENSOR_DELAY_NORMAL)) {
@@ -143,7 +175,7 @@ public class ShoulderPressActivity extends BaseActivity
     }
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
         mSensorManager.unregisterListener(this);
         Log.d(TAG, "Unregistered for sensor events");
@@ -158,6 +190,7 @@ public class ShoulderPressActivity extends BaseActivity
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
     }
 
+
     private void detectJump(float xValue, long timestamp) {
         if ((Math.abs(xValue) > GRAVITY_THRESHOLD)) {
             if (timestamp - mLastTime < TIME_THRESHOLD_NS && mUp != (xValue > 0)) {
@@ -171,29 +204,55 @@ public class ShoulderPressActivity extends BaseActivity
     private void onJumpDetected(boolean up) {
         // we only count a pair of up and down as one successful movement
         if (up) {
-
-
+            //Toast.makeText(getContext(),"Up",Toast.LENGTH_SHORT).show();
+            mHelperImageView.setImageResource(R.drawable.img_workout_up);
             return;
         } else {
-
+            mHelperImageView.setImageResource(R.drawable.img_workout_down);
         }
 
 
-        if (mJumpCounter < 10) {
+
+        if (mJumpCounter < 10)  {
             mJumpCounter++;
+            array_nahyeVoice[mJumpCounter - 1].start();
+
+
         } else if (mJumpCounter == 10) {
             mDatabase.child("users").child(mUser.getUid()).child("power").setValue(mSkill + mJumpCounter);
-            //array_nahyeVoice[VOICE_POWER_UP].start();
             return;
         } else {
             return;
         }
 
+
+        if (mJumpCounter == 7) {
+            try {
+                Thread.sleep(2000);
+            } catch (Exception e) {
+
+            }
+            array_nahyeVoice[VOICE_7_SUB].start();
+
+        } else if (mJumpCounter == 10) {
+
+            try {
+                Thread.sleep(1000);
+            } catch (Exception e) {
+
+            }
+            array_nahyeVoice[VOICE_POWER_UP].start();
+
+        }
 
         // Set value to Firebase database
         mDatabase.child("counters").child(mUser.getUid()).child("jumping").setValue(mJumpCounter);
 
     }
+
+    /**
+     * Starts a timer to clear the flag FLAG_KEEP_SCREEN_ON.
+     */
 
 
     /**
@@ -206,8 +265,8 @@ public class ShoulderPressActivity extends BaseActivity
                 if (Log.isLoggable(TAG, Log.DEBUG)) {
                     Log.d(TAG, "Resetting FLAG_KEEP_SCREEN_ON flag to allow going to background");
                 }
-                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-               // finish();
+                getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                // getActivity().finish();
             }
         });
     }
