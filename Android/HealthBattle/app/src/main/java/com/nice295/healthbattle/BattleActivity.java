@@ -21,7 +21,9 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -36,28 +38,47 @@ import java.io.InputStream;
  */
 public class BattleActivity extends BaseActivity {
 
-    String imageAssetPath = "dancingbanana.gif";
     ImageView imageview_Battle;
-
+    Button button_Start;
+    boolean button_selected=false;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle);
-
+/*
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        /*
-        FIXME: temporarily blocked
-        imageview_Battle = (ImageView) findViewById(R.id.imageView_BattleGif);
+        Log.i("test","activity is on");*/
+
+
+        //FIXME: temporarily blocked
+        imageview_Battle = (ImageView) findViewById(R.id.ivBattle);
+        button_Start = (Button) findViewById(R.id.start_battle_btn);
+        button_Start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(button_selected==false) {
+                    imageview_Battle.setVisibility(View.VISIBLE);
+                    button_selected=true;
+                    button_Start.setText("Done");
+                }else
+                {
+                    imageview_Battle.setVisibility(View.GONE);
+                    button_selected=false;
+                    button_Start.setText("Start");
+                }
+
+            }
+        });
         GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(imageview_Battle);
         Glide.with(this)
-            .load(R.drawable.dancingbanna)
-            .asGif()
-            .crossFade()
-            .into(imageview_Battle);
-        */
+                .load(R.drawable.dancingbanna)
+                .asGif()
+                .crossFade()
+                .into(imageview_Battle);
+
     }
 
 }
