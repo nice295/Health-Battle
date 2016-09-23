@@ -9,20 +9,31 @@
         android:id="@+id/should_press_image_view"
         android:src="@drawable/img_workout_down"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_height="wrap_content"
+        />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/should_press_explain_text_view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/should_press_start_helper_text"/>
+        android:text="@string/should_press_start_helper_text"
+        android:gravity="center"/>
 
     <TextView
         android:id="@+id/should_press_count_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="0"/>
+        android:text="0"
+        android:textSize="50dp"/>
+
+    <ImageView
+        android:id="@+id/should_press_fin_image_view"
+        android:src="@drawable/button_restart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        />
 
 
 </LinearLayout>
