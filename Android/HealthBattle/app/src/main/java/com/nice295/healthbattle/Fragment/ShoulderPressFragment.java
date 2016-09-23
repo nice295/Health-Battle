@@ -1,5 +1,6 @@
 package com.nice295.healthbattle.Fragment;
 
+import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -86,6 +87,12 @@ public class ShoulderPressFragment extends Fragment
     }
 
     private void init() {
+        getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        mHandler = new Handler();
+        renewTimer();
+        mSensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
+        mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
+
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         if (mUser == null) {
