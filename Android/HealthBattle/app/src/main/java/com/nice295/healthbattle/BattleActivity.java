@@ -71,6 +71,7 @@ public class BattleActivity extends BaseActivity implements View.OnClickListener
         mHPBar2 = (HPBar) findViewById(R.id.hpbar2);
 
         mHPBar1.setHPFullListener(this);
+        mHPBar2.setHPFullListener(this);
 
         mbtStart = (Button) findViewById(R.id.btStart);
         mbtStart.setOnClickListener(this);
@@ -90,8 +91,6 @@ public class BattleActivity extends BaseActivity implements View.OnClickListener
                 mHPBar2.setBarLevel(hpbar2[index]);
 
                 if (index == 4) {
-                    mLl01.setVisibility(View.GONE);
-                    mLlWin.setVisibility(View.VISIBLE);
                     return;
                 }
 
@@ -110,7 +109,6 @@ public class BattleActivity extends BaseActivity implements View.OnClickListener
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                Log.d("BATTLE", "end");
                 mFightTextImageView.setVisibility(View.GONE);
                 handler.sendEmptyMessageDelayed(0, 1000l);
             }
@@ -145,12 +143,19 @@ public class BattleActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void onFullCharged() {
+        if (mAnimation.hasStarted())
+            return;
+
         mFightTextImageView.setVisibility(View.VISIBLE);
         mFightTextImageView.startAnimation(mAnimation);
     }
 
     @Override
     public void onEmpty() {
+        if (mLl01.getVisibility() == View.GONE)
+            return;
 
+        mLl01.setVisibility(View.GONE);
+        mLlWin.setVisibility(View.VISIBLE);
     }
 }

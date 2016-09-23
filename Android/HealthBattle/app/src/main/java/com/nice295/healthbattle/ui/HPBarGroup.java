@@ -56,11 +56,9 @@ public class HPBarGroup extends ViewGroup{
             measureChildWithMargins(childView,
                 widthMeasureSpec, widthUsed,
                 heightMeasureSpec, 0);
-            Log.d("HPBAR", "maesured width : " +childView.getMeasuredWidth());
-            Log.d("HPBAR", "maesured height : " +childView.getMeasuredHeight());
+
             heightMax = Math.max(heightMax, childView.getMeasuredHeight());
             widthUsed += childView.getMeasuredWidth();
-            Log.d("HPBAR", "with used : " +widthUsed);
         }
         setMeasuredDimension(widthUsed, heightMax);
     }
