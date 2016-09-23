@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.nice295.healthbattle.BaseActivity;
+import com.nice295.healthbattle.FacebookLoginActivity;
 import com.nice295.healthbattle.R;
 
 import java.util.Timer;
@@ -42,18 +43,11 @@ public class ShoulderPressActivity extends BaseActivity
     private int mJumpCounter = 0;
     private int mSkill = 0;
 
-
-    private Handler mHandler;
-
     private SensorManager mSensorManager;
     private Sensor mSensor;
 
     /**
-     * How long to keep the screen on when no activity is happening
-     **/
-    private static final long SCREEN_ON_TIMEOUT_MS = 20000; // in milliseconds
-
-    /**
+     * /**
      * an up-down movement that takes more than this will not be registered as such
      **/
     private static final long TIME_THRESHOLD_NS = 2000000000; // in nanoseconds (= 2sec)
@@ -64,13 +58,11 @@ public class ShoulderPressActivity extends BaseActivity
      * measured by the Gravity sensor, changes with a variation (delta) > GRAVITY_THRESHOLD,
      * we consider that a successful count.
      */
-    private static final float GRAVITY_THRESHOLD = 2.0f; //7.0f;
+    private static final float GRAVITY_THRESHOLD = 1.0f; //7.0f;
 
     private DatabaseReference mDatabase;
     private DatabaseReference myRef;
     private FirebaseUser mUser;
-
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,10 +71,7 @@ public class ShoulderPressActivity extends BaseActivity
 
         mTvResult = (TextView) findViewById(R.id.tvResult);
 
-
-
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        mHandler = new Handler();
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
 
@@ -151,6 +140,7 @@ public class ShoulderPressActivity extends BaseActivity
 
     @Override
     public void onSensorChanged(SensorEvent event) {
+
         detectJump(event.values[0], event.timestamp);
     }
 
@@ -161,27 +151,27 @@ public class ShoulderPressActivity extends BaseActivity
     private void detectJump(float xValue, long timestamp) {
         if ((Math.abs(xValue) > GRAVITY_THRESHOLD)) {
             if (timestamp - mLastTime < TIME_THRESHOLD_NS && mUp != (xValue > 0)) {
+                //Log.d(TAG, "detectJump: YES");
                 onJumpDetected(!mUp);
             }
             mUp = xValue > 0;
             mLastTime = timestamp;
+        } else {
+            //Log.d(TAG, "detectJump: NO");
         }
     }
 
     private void onJumpDetected(boolean up) {
         // we only count a pair of up and down as one successful movement
         if (up) {
-
-
             return;
-        } else {
-
         }
-
 
         if (mJumpCounter < 10) {
             mJumpCounter++;
+            Toast.makeText(this, "Count: " + mJumpCounter, Toast.LENGTH_SHORT).show();
         } else if (mJumpCounter == 10) {
+            Toast.makeText(this, "Count: " + mJumpCounter, Toast.LENGTH_SHORT).show();
             mDatabase.child("users").child(mUser.getUid()).child("power").setValue(mSkill + mJumpCounter);
             //array_nahyeVoice[VOICE_POWER_UP].start();
             return;
@@ -189,26 +179,8 @@ public class ShoulderPressActivity extends BaseActivity
             return;
         }
 
-
         // Set value to Firebase database
         mDatabase.child("counters").child(mUser.getUid()).child("jumping").setValue(mJumpCounter);
 
-    }
-
-
-    /**
-     * Resets the FLAG_KEEP_SCREEN_ON flag so activity can go into background.
-     */
-    private void resetFlag() {
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                if (Log.isLoggable(TAG, Log.DEBUG)) {
-                    Log.d(TAG, "Resetting FLAG_KEEP_SCREEN_ON flag to allow going to background");
-                }
-                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-               // finish();
-            }
-        });
     }
 }

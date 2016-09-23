@@ -17,7 +17,11 @@
 package com.nice295.healthbattle;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
@@ -26,35 +30,58 @@ import com.nice295.healthbattle.ui.HPBar;
 /**
  * Argo.Lee
  */
-public class BattleActivity extends BaseActivity {
+public class BattleActivity extends BaseActivity implements View.OnClickListener {
+    private LinearLayout mLl00;
+    private LinearLayout mLl01;
+    private LinearLayout mLlWin;
+    private LinearLayout mLlLost;
 
     HPBar mHPBar1;
     HPBar mHPBar2;
     ImageView mImageView;
 
+    private Button mbtStart;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_battle_00);
+        setContentView(R.layout.activity_battle);
+
+        mLl00 = (LinearLayout) findViewById(R.id.ll00);
+        mLl01 = (LinearLayout) findViewById(R.id.ll01);
+        mLlWin = (LinearLayout) findViewById(R.id.llWin);
+        mLlLost = (LinearLayout) findViewById(R.id.llLost);
+
+        mLl01.setVisibility(View.GONE);
+        mLlWin.setVisibility(View.GONE);
+        mLlLost.setVisibility(View.GONE);
 
         mImageView = (ImageView) findViewById(R.id.battle_image_view);
         mHPBar1 = (HPBar) findViewById(R.id.hpbar1);
         mHPBar2 = (HPBar) findViewById(R.id.hpbar2);
 
+        mbtStart = (Button) findViewById(R.id.btStart);
+        mbtStart.setOnClickListener(this);
+
         GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(mImageView);
         Glide.with(this)
-            .load(R.drawable.dancingbanna)
-            .asGif()
-            .crossFade()
-            .into(mImageView);
+                .load(R.drawable.dancingbanna)
+                .asGif()
+                .crossFade()
+                .into(mImageView);
 /*
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Log.i("test","activity is on");*/
-
-
     }
 
+    @Override
+    public void onClick(View view) {
+        if (view == mbtStart) {
+            mLl00.setVisibility(View.GONE);
+            mLl01.setVisibility(View.VISIBLE);
+        }
+    }
 }
