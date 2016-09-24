@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:layout_width="match_parent"
-             android:layout_height="match_parent">
+             android:layout_height="match_parent"
+    android:background="#1a3650">
 
     <LinearLayout
         android:id="@+id/ll01"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/fight_bg"
+        android:background="#1A3650"
         android:orientation="vertical">
 
         <FrameLayout
@@ -49,8 +50,7 @@
                 android:id="@+id/battle_image_view"
                 android:visibility="gone"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/fight"/>
+                android:layout_height="match_parent"/>
 
             <ImageView
                 android:id="@+id/fight_text_image_view"
@@ -67,7 +67,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#1a3650">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -77,7 +78,8 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="#1a3650">
 
                 <ImageView
                     android:id="@+id/ivBG"
@@ -95,10 +97,11 @@
                 android:gravity="center"
                 android:textColor="@android:color/white"
                 android:layout_marginBottom="120dp"
-                android:text="Lee"
+                android:text="Seunghyun Lee"
                 android:textSize="30dp"/>
 
             <ImageView
+                android:id="@+id/reenable_image_view"
                 android:layout_width="120dp"
                 android:layout_height="43dp"
                 android:scaleType="fitXY"

@@ -17,6 +17,7 @@
 package com.nice295.healthbattle;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -26,6 +27,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
@@ -44,8 +46,15 @@ public class BattleActivity extends BaseActivity implements  HPBar.HPBarListener
     ImageView mImageView;
     ImageView mFightTextImageView;
 
+    TextView mMeTextView;
+    ImageView mReenableImageView;
 
     private Animation mAnimation;
+    private Handler mHandler;
+
+    MediaPlayer voice_fight_start;
+    MediaPlayer voice_fight_finish;
+    MediaPlayer voice_fight_winner;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,6 +65,9 @@ public class BattleActivity extends BaseActivity implements  HPBar.HPBarListener
         User me = intent.getParcelableExtra("me");
         User other = intent.getParcelableExtra("opponent");
 
+        voice_fight_start= MediaPlayer.create(this, R.raw.voice_fight_start);
+        voice_fight_finish= MediaPlayer.create(this, R.raw.voice_fight_finish);
+        voice_fight_winner= MediaPlayer.create(this, R.raw.voice_fight_winner);
 
         mLl01 = (LinearLayout) findViewById(R.id.ll01);
         mLlWin = (LinearLayout) findViewById(R.id.llWin);
@@ -67,6 +79,16 @@ public class BattleActivity extends BaseActivity implements  HPBar.HPBarListener
         mHPBar1 = (HPBar) findViewById(R.id.hpbar1);
         mHPBar2 = (HPBar) findViewById(R.id.hpbar2);
 
+        mMeTextView = (TextView) findViewById(R.id.tvName);
+        mMeTextView.setText(me.getUsername());
+        mReenableImageView = (ImageView) findViewById(R.id.reenable_image_view);
+        mReenableImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         mHPBar1.setHPFullListener(this);
         mHPBar2.setHPFullListener(this);
 
@@ -77,7 +99,7 @@ public class BattleActivity extends BaseActivity implements  HPBar.HPBarListener
             90, 70, 50, 30, 0
         };
 
-        final Handler handler = new Handler() {
+        mHandler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
                 int index = msg.what;
@@ -104,7 +126,9 @@ public class BattleActivity extends BaseActivity implements  HPBar.HPBarListener
             @Override
             public void onAnimationEnd(Animation animation) {
                 mFightTextImageView.setVisibility(View.GONE);
-                handler.sendEmptyMessageDelayed(0, 1000l);
+                mImageView.setVisibility(View.VISIBLE);
+                mHandler.sendEmptyMessageDelayed(0, 1000l);
+                voice_fight_start.start();
             }
 
             @Override
@@ -144,5 +168,8 @@ public class BattleActivity extends BaseActivity implements  HPBar.HPBarListener
 
         mLl01.setVisibility(View.GONE);
         mLlWin.setVisibility(View.VISIBLE);
+
+        voice_fight_finish.start();
+        voice_fight_winner.start();
     }
 }

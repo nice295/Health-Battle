@@ -131,7 +131,7 @@ public class HPBar extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        int delay = 50;
+        int delay = 1;
         if (mLtr) {
             if (mBarCurWidth < mBarWidth) {
                 mBarCurWidth += 10;
