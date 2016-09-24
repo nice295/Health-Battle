@@ -26,7 +26,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -39,7 +38,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.nice295.healthbattle.FacebookLoginActivity;
 import com.nice295.healthbattle.BattleActivity;
-import com.nice295.healthbattle.model.User;
+import com.nice295.healthbattle.Model.User;
 import com.nice295.healthbattle.R;
 
 import de.hdodenhof.circleimageview.CircleImageView;

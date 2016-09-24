@@ -22,8 +22,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.nice295.healthbattle.BaseActivity;
 import com.nice295.healthbattle.R;
-import com.nice295.healthbattle.model.Fight;
-import com.nice295.healthbattle.model.User;
+import com.nice295.healthbattle.Model.Fight;
+import com.nice295.healthbattle.Model.User;
 
 import java.util.ArrayList;
 

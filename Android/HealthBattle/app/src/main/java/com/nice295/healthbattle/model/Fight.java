@@ -1,4 +1,4 @@
-package com.nice295.healthbattle.model;
+package com.nice295.healthbattle.Model;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 

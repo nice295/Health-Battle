@@ -38,7 +38,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.nice295.healthbattle.FacebookLoginActivity;
-import com.nice295.healthbattle.model.User;
+import com.nice295.healthbattle.Model.User;
 import com.nice295.healthbattle.R;
 import com.nice295.healthbattle.WorkoutActivity;
 
@@ -84,7 +84,6 @@ public class WorkoutFragment extends Fragment implements View.OnClickListener {
             getActivity().finish();
         }
 
-        // load internally
         User me = Paper.book().read("me", new User());
         mTvUser.setText(me.getUsername());
         mScvPower.setBarLevel(me.getPower());
