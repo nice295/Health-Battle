@@ -189,8 +189,9 @@ public class ShoulderPressFragment extends Fragment
        array_nahyeVoice[VOICE_7_SUB] = MediaPlayer.create(getContext(), R.raw.workout_7_sub);
         array_nahyeVoice[VOICE_POWER_UP] = MediaPlayer.create(getContext(), R.raw.workout_powerup);
         array_nahyeVoice[VOICE_SKILL_UP] = MediaPlayer.create(getContext(), R.raw.workout_skillup);
+                */
         array_nahyeVoice[VOICE_START] = MediaPlayer.create(getContext(), R.raw.workout_start);
-        */
+
 
         array_nahyeVoice[VOICE_START].start();
 
