@@ -133,9 +133,11 @@ public class BattleFragment extends Fragment implements View.OnClickListener {
                         if (dataSnapshot.exists()) {
                             mTv00.setText(user.getUsername());
 
+                            /*
                             Glide.with(getContext())
                                     .load(user.getImageUrl())
                                     .into(mIv00);
+                            */
 
                             // Save internally
                             Paper.book().write("me", user);
