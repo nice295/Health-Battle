@@ -28,6 +28,7 @@
     <string name="bigmatch">Big Match</string>
     <string name="workout_ready">Ready</string>
     <string name="workout_h">workout_h</string>
+    <string name="good">Good job!</string>
 
     <!--
     <string name="label_facebook_login">Firebase + Facebook Login</string>

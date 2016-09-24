@@ -25,4 +25,5 @@
     <string name="bigmatch">빅매치</string>
     <string name="workout_ready">준비운동</string>
     <string name="workout_h">허리운동</string>
+    <string name="good">참 잘했어요!</string>
 </resources>
