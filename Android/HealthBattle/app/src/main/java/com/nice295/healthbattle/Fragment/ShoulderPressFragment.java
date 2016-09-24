@@ -60,6 +60,9 @@ public class ShoulderPressFragment extends Fragment
     private Sensor mSensor;
 
     private MediaPlayer array_nahyeVoice[];
+
+    private Boolean mRready = false;
+
     /**
      * How long to keep the screen on when no activity is happening
      **/
@@ -99,7 +102,7 @@ public class ShoulderPressFragment extends Fragment
         mFinishImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "Clicked", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "Clicked", Toast.LENGTH_SHORT).show();
                 ;
                 getActivity().finish();
 
@@ -155,7 +158,7 @@ public class ShoulderPressFragment extends Fragment
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()) {
+                        if (mRready && dataSnapshot.exists()) {
                             Long count = dataSnapshot.getValue(Long.class);
                             mCounterTextView.setText(String.valueOf(count));
                             mJumpCounter = count.intValue();
@@ -189,6 +192,8 @@ public class ShoulderPressFragment extends Fragment
         ;
 
         array_nahyeVoice[VOICE_START].start();
+
+        mRready = true;
     }
 
 
@@ -212,7 +217,7 @@ public class ShoulderPressFragment extends Fragment
     public void onDestroy() {
         super.onDestroy();
 
-        mJumpCounter = 0;
+        mRready = false;
 
         array_nahyeVoice[0].release();
         array_nahyeVoice[1].release();
@@ -273,13 +278,13 @@ public class ShoulderPressFragment extends Fragment
         } else if (mJumpCounter < 10) {
             //mJumpCounter++;
             array_nahyeVoice[mJumpCounter - 1].start();
-
-
         } else if (mJumpCounter == 10) {
             //mDatabase.child("users").child(mUser.getUid()).child("power").setValue(mSkill + mJumpCounter);
-            array_nahyeVoice[VOICE_POWER_UP].start();
-            mExplainTextView.setVisibility(View.GONE);
-            mCounterTextView.setVisibility(View.GONE);
+            //array_nahyeVoice[VOICE_POWER_UP].start();
+            array_nahyeVoice[9].start(); // 10 and power up
+            //mExplainTextView.setVisibility(View.GONE);
+            mExplainTextView.setText(getString(R.string.good));
+            //mCounterTextView.setVisibility(View.GONE);
             mFinishImageView.setVisibility(View.VISIBLE);
 
             return;

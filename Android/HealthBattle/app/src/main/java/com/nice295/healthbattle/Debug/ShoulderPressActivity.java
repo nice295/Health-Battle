@@ -101,7 +101,7 @@ public class ShoulderPressActivity extends BaseActivity
                     }
                 });
 
-        mDatabase.child("counters").child(mUser.getUid()).child("jumping").setValue(0);
+        //mDatabase.child("counters").child(mUser.getUid()).child("jumping").setValue(0);
 
         mDatabase.child("counters").child(mUser.getUid()).child("jumping").addValueEventListener(
                 new ValueEventListener() {
@@ -111,7 +111,6 @@ public class ShoulderPressActivity extends BaseActivity
                             Long count = dataSnapshot.getValue(Long.class);
                             mTvResult.setText(String.valueOf(count));
                             mJumpCounter = count.intValue();
-
                         }
                     }
 
