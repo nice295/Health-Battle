@@ -21,6 +21,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.view.animation.Animation;
@@ -48,6 +49,9 @@ public class BattleActivity extends BaseActivity implements  HPBar.HPBarListener
 
     TextView mMeTextView;
     ImageView mReenableImageView;
+    TextView mOtherTextView;
+    TextView mMeHPTextView;
+    TextView mOtherHPTextView;
 
     private Animation mAnimation;
     private Handler mHandler;
@@ -56,14 +60,17 @@ public class BattleActivity extends BaseActivity implements  HPBar.HPBarListener
     MediaPlayer voice_fight_finish;
     MediaPlayer voice_fight_winner;
 
+    private User mMe;
+    private User mOther;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle);
 
         Intent intent = getIntent();
-        User me = intent.getParcelableExtra("me");
-        User other = intent.getParcelableExtra("opponent");
+        mMe = intent.getParcelableExtra("me");
+        mOther = intent.getParcelableExtra("opponent");
 
         voice_fight_start= MediaPlayer.create(this, R.raw.voice_fight_start);
         voice_fight_finish= MediaPlayer.create(this, R.raw.voice_fight_finish);
@@ -80,7 +87,7 @@ public class BattleActivity extends BaseActivity implements  HPBar.HPBarListener
         mHPBar2 = (HPBar) findViewById(R.id.hpbar2);
 
         mMeTextView = (TextView) findViewById(R.id.tvName);
-        mMeTextView.setText(me.getUsername());
+        mMeTextView.setText(mMe.getUsername());
         mReenableImageView = (ImageView) findViewById(R.id.reenable_image_view);
         mReenableImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,6 +98,16 @@ public class BattleActivity extends BaseActivity implements  HPBar.HPBarListener
 
         mHPBar1.setHPFullListener(this);
         mHPBar2.setHPFullListener(this);
+
+        mMeTextView = (TextView) findViewById(R.id.me_text_view);
+        mMeHPTextView = (TextView) findViewById(R.id.me_hp_text_view);
+        mOtherTextView = (TextView) findViewById(R.id.other_text_view);
+        mOtherHPTextView = (TextView) findViewById(R.id.other_hp_text_view);
+
+        mMeTextView.setText(String.format("P1: %s", mMe.getUsername()));
+        mOtherTextView.setText(String.format("P2: %s", mOther.getUsername()));
+        mMeHPTextView.setText(String.valueOf(mHPBar1.getBarLevel()));
+        mOtherHPTextView.setText(String.valueOf(mHPBar2.getBarLevel()));
 
         final int hpbar[] = new int[]{
             80, 80, 60, 20, 10
@@ -103,6 +120,8 @@ public class BattleActivity extends BaseActivity implements  HPBar.HPBarListener
             @Override
             public void handleMessage(Message msg) {
                 int index = msg.what;
+                mMeHPTextView.setText(mHPBar1.getBarLevel());
+                mOtherHPTextView.setText(mHPBar2.getBarLevel());
                 mHPBar1.setBarLevel(hpbar[index]);
                 mHPBar2.setBarLevel(hpbar2[index]);
 

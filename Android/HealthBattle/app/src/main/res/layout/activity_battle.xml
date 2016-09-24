@@ -20,7 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="30dp">
 
                 <com.nice295.healthbattle.ui.HPBar xmlns:app="http://schemas.android.com/apk/res-auto"
                                                    android:id="@+id/hpbar1"
@@ -42,15 +42,60 @@
             </com.nice295.healthbattle.ui.HPBarGroup>
 
             <ImageView
-                android:id="@+id/preview_battle_image_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/fight_logo_vs"/>
+
+            <TextView
+                android:id="@+id/me_hp_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="100"
+                android:textColor="@android:color/white"
+                android:textSize="16dp"/>
+
+            <TextView
+                android:id="@+id/me_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="50dp"
+                android:text="P1: me"
+                android:textColor="@android:color/white"
+                android:textSize="16dp"/>
+
+            <TextView
+                android:id="@+id/other_hp_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="5dp"
+                android:text="100"
+                android:textColor="@android:color/white"
+                android:textSize="16dp"/>
+
+            <TextView
+                android:id="@+id/other_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="50dp"
+                android:text="P2: you"
+                android:textColor="@android:color/white"
+                android:textSize="16dp"/>
 
             <ImageView
                 android:id="@+id/battle_image_view"
-                android:visibility="gone"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:src="@drawable/fight"
+                android:visibility="gone"/>
 
             <ImageView
                 android:id="@+id/fight_text_image_view"
@@ -59,6 +104,11 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="120dp"
                 android:src="@drawable/battle_text_fight"/>
+
+            <ImageView
+                android:id="@+id/preview_battle_image_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
         </FrameLayout>
     </LinearLayout>
 
@@ -94,21 +144,21 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:gravity="center"
-                android:textColor="@android:color/white"
                 android:layout_marginBottom="120dp"
-                android:text="Seunghyun Lee"
+                android:gravity="center"
+                android:text="Lee Seunghyun"
+                android:textColor="@android:color/white"
                 android:textSize="30dp"/>
 
             <ImageView
                 android:id="@+id/reenable_image_view"
                 android:layout_width="120dp"
                 android:layout_height="43dp"
-                android:scaleType="fitXY"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="50dp"
-                android:background="@drawable/button_restart"/>
+                android:background="@drawable/button_restart"
+                android:scaleType="fitXY"/>
         </RelativeLayout>
     </LinearLayout>
 
