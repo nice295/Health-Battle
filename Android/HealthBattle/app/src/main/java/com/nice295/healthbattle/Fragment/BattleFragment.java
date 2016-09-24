@@ -263,7 +263,8 @@ public class BattleFragment extends Fragment implements View.OnClickListener {
             user = mUserArray.get(4);
         }
         Intent intent = new Intent(getActivity(), BattleActivity.class);
-        intent.putExtra("user", user);
+        intent.putExtra("me", mMe);
+        intent.putExtra("opponent", user);
         startActivity(intent);
     }
 }

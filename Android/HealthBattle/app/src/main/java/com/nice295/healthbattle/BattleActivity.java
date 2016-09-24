@@ -49,6 +49,10 @@ public class BattleActivity extends BaseActivity implements View.OnClickListener
     HPBar mHPBar2;
     ImageView mImageView;
     ImageView mFightTextImageView;
+
+    ImageView mMeImageView;
+    ImageView mOtherImageView;
+
     private Animation mAnimation;
 
     private Button mbtStart;
@@ -59,7 +63,20 @@ public class BattleActivity extends BaseActivity implements View.OnClickListener
         setContentView(R.layout.activity_battle);
 
         Intent intent = getIntent();
-        User user = intent.getParcelableExtra("user");
+        User me = intent.getParcelableExtra("me");
+        User other = intent.getParcelableExtra("opponent");
+
+        mMeImageView = (ImageView) findViewById(R.id.ivPersonLeft);
+        mOtherImageView = (ImageView) findViewById(R.id.ivPersonRight);
+
+        Glide.with(this)
+            .load(me.getImageUrl())
+            .into(mMeImageView);
+
+        Glide.with(this)
+            .load(other.getImageUrl())
+            .into(mOtherImageView);
+
 
         mLl00 = (LinearLayout) findViewById(R.id.ll00);
         mLl01 = (LinearLayout) findViewById(R.id.ll01);
