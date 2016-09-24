@@ -120,8 +120,8 @@ public class BattleActivity extends BaseActivity implements  HPBar.HPBarListener
             @Override
             public void handleMessage(Message msg) {
                 int index = msg.what;
-                mMeHPTextView.setText(mHPBar1.getBarLevel());
-                mOtherHPTextView.setText(mHPBar2.getBarLevel());
+                mMeHPTextView.setText(String.valueOf(mHPBar1.getBarLevel()));
+                mOtherHPTextView.setText(String.valueOf(mHPBar2.getBarLevel()));
                 mHPBar1.setBarLevel(hpbar[index]);
                 mHPBar2.setBarLevel(hpbar2[index]);
 
