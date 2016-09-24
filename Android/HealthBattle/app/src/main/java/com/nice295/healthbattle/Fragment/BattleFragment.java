@@ -18,6 +18,8 @@ package com.nice295.healthbattle.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.NestedScrollView;
@@ -25,6 +27,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -41,6 +44,8 @@ import com.nice295.healthbattle.BattleActivity;
 import com.nice295.healthbattle.Model.User;
 import com.nice295.healthbattle.R;
 
+import java.util.ArrayList;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.paperdb.Paper;
 
@@ -49,6 +54,16 @@ public class BattleFragment extends Fragment implements View.OnClickListener {
 
     private TextView mTv00;
     private CircleImageView mIv00;
+    private TextView mTv01;
+    private CircleImageView mIv01;
+    private TextView mTv02;
+    private CircleImageView mIv02;
+    private TextView mTv03;
+    private CircleImageView mIv03;
+    private TextView mTv04;
+    private CircleImageView mIv04;
+    private TextView mTv05;
+    private CircleImageView mIv05;
     private View mV00;
     private RelativeLayout mRL00;
     private RelativeLayout mRL01;
@@ -56,10 +71,14 @@ public class BattleFragment extends Fragment implements View.OnClickListener {
     private RelativeLayout mRL03;
     private RelativeLayout mRL04;
     private RelativeLayout mRL05;
+    private RelativeLayout mRL06;
+    private RelativeLayout mRL07;
 
+    private Handler mHandler;
+
+    private ArrayList<User> mUserArray;
 
     private FirebaseUser mUser;
-
     private DatabaseReference mDatabase;
 
     @Nullable
@@ -71,6 +90,17 @@ public class BattleFragment extends Fragment implements View.OnClickListener {
         // views
         mTv00 = (TextView) ll.findViewById(R.id.tv00);
         mIv00 = (CircleImageView) ll.findViewById(R.id.iv00);
+        mTv01 = (TextView) ll.findViewById(R.id.tv02);
+        mIv01 = (CircleImageView) ll.findViewById(R.id.iv02);
+        mTv02 = (TextView) ll.findViewById(R.id.tv03);
+        mIv02 = (CircleImageView) ll.findViewById(R.id.iv03);
+        mTv03 = (TextView) ll.findViewById(R.id.tv04);
+        mIv03 = (CircleImageView) ll.findViewById(R.id.iv04);
+        mTv04 = (TextView) ll.findViewById(R.id.tv05);
+        mIv04 = (CircleImageView) ll.findViewById(R.id.iv05);
+        mTv05 = (TextView) ll.findViewById(R.id.tv06);
+        mIv05 = (CircleImageView) ll.findViewById(R.id.iv06);
+
         mV00 = (View) ll.findViewById(R.id.civ00);
         mV00.setOnClickListener(this);
 
@@ -99,12 +129,68 @@ public class BattleFragment extends Fragment implements View.OnClickListener {
         }
 
         // load internally
-        User me = Paper.book().read("me", new User());
+        final User me = Paper.book().read("me", new User());
         mTv00.setText(me.getUsername());
 
         Glide.with(getActivity())
                 .load(me.getImageUrl())
                 .into(mIv00);
+
+        mUserArray = new ArrayList<User>();
+
+        mHandler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                int index = msg.what;
+                User user = mUserArray.get(index);
+                TextView tv = null;
+                ImageView iv = null;
+                if (index == 0) {
+                    tv = mTv01;
+                    iv = mIv01;
+                } else if (index == 1) {
+                    tv = mTv02;
+                    iv = mIv02;
+                } else if (index == 2) {
+                    tv = mTv03;
+                    iv = mIv03;
+                } else if (index == 3) {
+                    tv = mTv04;
+                    iv = mIv04;
+                } else if (index == 4) {
+                    tv = mTv05;
+                    iv = mIv05;
+                }
+
+                if (tv != null) {
+                    tv.setText(user.getUsername());
+                    Glide.with(getActivity())
+                        .load(user.getImageUrl())
+                        .into(iv);
+                }
+            }
+        };
+
+        mDatabase.child("users").addValueEventListener(
+            new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    mUserArray.clear();
+                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                        User user = postSnapshot.getValue(User.class);
+                        if (user.getUsername().equals(me.getUsername()))
+                            continue;
+                        Log.d(TAG, "Name: " + user.getUsername());
+                        mUserArray.add(user);
+                        mHandler.sendEmptyMessage(mUserArray.size() - 1);
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Log.w(TAG, "getUser:onCancelled", databaseError.toException());
+                }
+            });
 
         return ll;
     }
@@ -163,9 +249,7 @@ public class BattleFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-
             Intent intent = new Intent(getActivity(), BattleActivity.class);
             startActivity(intent);
-
     }
 }
