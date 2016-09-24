@@ -33,6 +33,7 @@ import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
+import com.nice295.healthbattle.model.User;
 import com.nice295.healthbattle.ui.HPBar;
 
 /**
@@ -56,6 +57,9 @@ public class BattleActivity extends BaseActivity implements View.OnClickListener
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle);
+
+        Intent intent = getIntent();
+        User user = intent.getParcelableExtra("user");
 
         mLl00 = (LinearLayout) findViewById(R.id.ll00);
         mLl01 = (LinearLayout) findViewById(R.id.ll01);

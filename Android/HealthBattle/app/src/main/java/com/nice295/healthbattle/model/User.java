@@ -1,12 +1,15 @@
 package com.nice295.healthbattle.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.firebase.database.IgnoreExtraProperties;
 
 /**
  * Created by kyuholee on 2016. 9. 4..
  */
 @IgnoreExtraProperties
-public class User {
+public class User implements Parcelable {
 
     public String username;
     public String email;
@@ -23,6 +26,26 @@ public class User {
         this.email = email;
         this.imageUrl = imageUrl;
     }
+
+    protected User(Parcel in) {
+        username = in.readString();
+        email = in.readString();
+        imageUrl = in.readString();
+        power = in.readInt();
+        skill = in.readInt();
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 
     public String getUsername() {
         return username;
@@ -42,5 +65,19 @@ public class User {
 
     public int getSkill() {
         return skill;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(username);
+        parcel.writeString(email);
+        parcel.writeString(imageUrl);
+        parcel.writeInt(power);
+        parcel.writeInt(skill);
     }
 }

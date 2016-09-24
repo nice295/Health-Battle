@@ -76,6 +76,7 @@ public class BattleFragment extends Fragment implements View.OnClickListener {
 
     private Handler mHandler;
 
+    private User mMe;
     private ArrayList<User> mUserArray;
 
     private FirebaseUser mUser;
@@ -85,7 +86,7 @@ public class BattleFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         NestedScrollView ll = (NestedScrollView) inflater.inflate(
-                R.layout.fragment_battle, container, false);
+            R.layout.fragment_battle, container, false);
 
         // views
         mTv00 = (TextView) ll.findViewById(R.id.tv00);
@@ -104,12 +105,12 @@ public class BattleFragment extends Fragment implements View.OnClickListener {
         mV00 = (View) ll.findViewById(R.id.civ00);
         mV00.setOnClickListener(this);
 
-        mRL00 = (RelativeLayout)  ll .findViewById(R.id.relativeLayout01);
-        mRL01 = (RelativeLayout)  ll .findViewById(R.id.relativeLayout02);
-        mRL02 = (RelativeLayout)  ll .findViewById(R.id.relativeLayout03);
-        mRL03 = (RelativeLayout)  ll .findViewById(R.id.relativeLayout04);
-        mRL04 = (RelativeLayout)  ll .findViewById(R.id.relativeLayout05);
-        mRL05 = (RelativeLayout)  ll .findViewById(R.id.relativeLayout06);
+        mRL00 = (RelativeLayout) ll.findViewById(R.id.relativeLayout01);
+        mRL01 = (RelativeLayout) ll.findViewById(R.id.relativeLayout02);
+        mRL02 = (RelativeLayout) ll.findViewById(R.id.relativeLayout03);
+        mRL03 = (RelativeLayout) ll.findViewById(R.id.relativeLayout04);
+        mRL04 = (RelativeLayout) ll.findViewById(R.id.relativeLayout05);
+        mRL05 = (RelativeLayout) ll.findViewById(R.id.relativeLayout06);
         mRL00.setOnClickListener(this);
         mRL01.setOnClickListener(this);
         mRL02.setOnClickListener(this);
@@ -129,12 +130,12 @@ public class BattleFragment extends Fragment implements View.OnClickListener {
         }
 
         // load internally
-        final User me = Paper.book().read("me", new User());
-        mTv00.setText(me.getUsername());
+        mMe = Paper.book().read("me", new User());
+        mTv00.setText(mMe.getUsername());
 
         Glide.with(getActivity())
-                .load(me.getImageUrl())
-                .into(mIv00);
+            .load(mMe.getImageUrl())
+            .into(mIv00);
 
         mUserArray = new ArrayList<User>();
 
@@ -178,7 +179,7 @@ public class BattleFragment extends Fragment implements View.OnClickListener {
                     mUserArray.clear();
                     for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                         User user = postSnapshot.getValue(User.class);
-                        if (user.getUsername().equals(me.getUsername()))
+                        if (user.getUsername().equals(mMe.getUsername()))
                             continue;
                         Log.d(TAG, "Name: " + user.getUsername());
                         mUserArray.add(user);
@@ -206,39 +207,37 @@ public class BattleFragment extends Fragment implements View.OnClickListener {
         //mProgressBar.setVisibility(View.VISIBLE);
 
         mDatabase.child("users").child(mUser.getUid()).addValueEventListener(
-                new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (!dataSnapshot.exists()) {
-                            return;
-                        }
-
-                        User user = dataSnapshot.getValue(User.class);
-
-                        if (dataSnapshot.exists()) {
-                            mTv00.setText(user.getUsername());
-
-                            /*
-                            Glide.with(getContext())
-                                    .load(user.getImageUrl())
-                                    .into(mIv00);
-                            */
-
-                            // Save internally
-                            Paper.book().write("me", user);
-                        } else {
-                            Log.d(TAG, "Adding new user info");
-                            writeNewUser(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail(), mUser.getPhotoUrl().toString());
-                        }
-
-                        //mProgressBar.setVisibility(View.INVISIBLE);
+            new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (!dataSnapshot.exists()) {
+                        return;
                     }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        Log.w(TAG, "getUser:onCancelled", databaseError.toException());
+                    User user = dataSnapshot.getValue(User.class);
+
+                    if (dataSnapshot.exists()) {
+                        mTv00.setText(user.getUsername());
+
+                        Glide.with(getContext())
+                            .load(user.getImageUrl())
+                            .into(mIv00);
+
+                        // Save internally
+                        Paper.book().write("me", user);
+                    } else {
+                        Log.d(TAG, "Adding new user info");
+                        writeNewUser(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail(), mUser.getPhotoUrl().toString());
                     }
-                });
+
+                    //mProgressBar.setVisibility(View.INVISIBLE);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Log.w(TAG, "getUser:onCancelled", databaseError.toException());
+                }
+            });
     }
 
     private void writeNewUser(String userId, String name, String email, String imageUrl) {
@@ -249,7 +248,22 @@ public class BattleFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-            Intent intent = new Intent(getActivity(), BattleActivity.class);
-            startActivity(intent);
+        User user = null;
+        if (view == mRL00) {
+            user = mMe;
+        } else if (view == mRL01) {
+            user = mUserArray.get(0);
+        } else if (view == mRL02) {
+            user = mUserArray.get(1);
+        } else if (view == mRL03) {
+            user = mUserArray.get(2);
+        } else if (view == mRL04) {
+            user = mUserArray.get(3);
+        } else if (view == mRL05) {
+            user = mUserArray.get(4);
+        }
+        Intent intent = new Intent(getActivity(), BattleActivity.class);
+        intent.putExtra("user", user);
+        startActivity(intent);
     }
 }
