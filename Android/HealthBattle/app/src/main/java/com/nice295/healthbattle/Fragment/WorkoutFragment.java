@@ -122,9 +122,9 @@ public class WorkoutFragment extends Fragment implements View.OnClickListener {
                             mScvPower.setBarLevel(user.getPower());
                             mScvSkill.setBarLevel(user.getSkill());
 
-                            Glide.with(getContext())
+/*                            Glide.with(getContext())
                                     .load(user.getImageUrl())
-                                    .into(mIvProfile);
+                                    .into(mIvProfile);*/
 
                             // Save internally
                             Paper.book().write("me", user);
