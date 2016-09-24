@@ -35,23 +35,17 @@ import com.nice295.healthbattle.ui.HPBar;
 /**
  * Argo.Lee
  */
-public class BattleActivity extends BaseActivity implements View.OnClickListener, HPBar.HPBarListener {
-    private LinearLayout mLl00;
+public class BattleActivity extends BaseActivity implements  HPBar.HPBarListener {
     private LinearLayout mLl01;
     private LinearLayout mLlWin;
-    private LinearLayout mLlLost;
 
     HPBar mHPBar1;
     HPBar mHPBar2;
     ImageView mImageView;
     ImageView mFightTextImageView;
 
-    ImageView mMeImageView;
-    ImageView mOtherImageView;
 
     private Animation mAnimation;
-
-    private Button mbtStart;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,26 +56,12 @@ public class BattleActivity extends BaseActivity implements View.OnClickListener
         User me = intent.getParcelableExtra("me");
         User other = intent.getParcelableExtra("opponent");
 
-        mMeImageView = (ImageView) findViewById(R.id.ivPersonLeft);
-        mOtherImageView = (ImageView) findViewById(R.id.ivPersonRight);
 
-        Glide.with(this)
-            .load(me.getImageUrl())
-            .into(mMeImageView);
-
-        Glide.with(this)
-            .load(other.getImageUrl())
-            .into(mOtherImageView);
-
-
-        mLl00 = (LinearLayout) findViewById(R.id.ll00);
         mLl01 = (LinearLayout) findViewById(R.id.ll01);
         mLlWin = (LinearLayout) findViewById(R.id.llWin);
-        mLlLost = (LinearLayout) findViewById(R.id.llLost);
 
-        mLl01.setVisibility(View.GONE);
+        mLl01.setVisibility(View.VISIBLE);
         mLlWin.setVisibility(View.GONE);
-        mLlLost.setVisibility(View.GONE);
 
         mImageView = (ImageView) findViewById(R.id.battle_image_view);
         mHPBar1 = (HPBar) findViewById(R.id.hpbar1);
@@ -89,9 +69,6 @@ public class BattleActivity extends BaseActivity implements View.OnClickListener
 
         mHPBar1.setHPFullListener(this);
         mHPBar2.setHPFullListener(this);
-
-        mbtStart = (Button) findViewById(R.id.btStart);
-        mbtStart.setOnClickListener(this);
 
         final int hpbar[] = new int[]{
             80, 80, 60, 20, 10
@@ -149,14 +126,6 @@ public class BattleActivity extends BaseActivity implements View.OnClickListener
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Log.i("test","activity is on");*/
-    }
-
-    @Override
-    public void onClick(View view) {
-        if (view == mbtStart) {
-            mLl00.setVisibility(View.GONE);
-            mLl01.setVisibility(View.VISIBLE);
-        }
     }
 
     @Override

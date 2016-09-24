@@ -4,83 +4,6 @@
              android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/ll00"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_margin="?attr/actionBarSize"
-                android:layout_marginTop="19dp"
-                android:gravity="center"
-                android:text="@string/bigmatch"
-                android:textAppearance="@android:style/TextAppearance.Material.Large"
-                android:textSize="80dp"/>
-
-            <Button
-                android:id="@+id/btStart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="21dp"
-                android:background="@drawable/start"
-                android:scaleType="centerCrop"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/textView6">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/ivPersonLeft"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_below="@+id/textView6"
-                    android:layout_marginLeft="32dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/ic_launcher"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/textView6"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="VS"
-                    android:textAlignment="center"/>
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/ivPersonRight"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/textView6"
-                    android:layout_marginRight="32dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/ic_launcher"/>
-            </LinearLayout>
-
-        </RelativeLayout>
-    </LinearLayout>
-
-    <LinearLayout
         android:id="@+id/ll01"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -118,7 +41,13 @@
             </com.nice295.healthbattle.ui.HPBarGroup>
 
             <ImageView
+                android:id="@+id/preview_battle_image_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <ImageView
                 android:id="@+id/battle_image_view"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/fight"/>
@@ -131,26 +60,6 @@
                 android:layout_marginBottom="120dp"
                 android:src="@drawable/battle_text_fight"/>
         </FrameLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llLost"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"
-        android:orientation="vertical">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/ivBG"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#86959f"
-                android:src="@drawable/loser"/>
-        </RelativeLayout>
     </LinearLayout>
 
     <LinearLayout
