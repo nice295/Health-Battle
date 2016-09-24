@@ -110,10 +110,10 @@ public class BattleActivity extends BaseActivity implements  HPBar.HPBarListener
         mOtherHPTextView.setText(String.valueOf(mHPBar2.getBarLevel()));
 
         final int hpbar[] = new int[]{
-            80, 80, 60, 20, 10
+            80, 50, 30, 10, 5
         };
         final int hpbar2[] = new int[]{
-            90, 70, 50, 30, 0
+            70, 50, 20, 10, 0
         };
 
         mHandler = new Handler() {
@@ -125,11 +125,11 @@ public class BattleActivity extends BaseActivity implements  HPBar.HPBarListener
                 mHPBar1.setBarLevel(hpbar[index]);
                 mHPBar2.setBarLevel(hpbar2[index]);
 
-                if (index == 4) {
+                if (index == hpbar.length - 1) {
                     return;
                 }
 
-                sendEmptyMessageDelayed(index + 1, 1000l);
+                sendEmptyMessageDelayed(index + 1, 900l);
             }
         };
 
@@ -146,7 +146,7 @@ public class BattleActivity extends BaseActivity implements  HPBar.HPBarListener
             public void onAnimationEnd(Animation animation) {
                 mFightTextImageView.setVisibility(View.GONE);
                 mImageView.setVisibility(View.VISIBLE);
-                mHandler.sendEmptyMessageDelayed(0, 1000l);
+                mHandler.sendEmptyMessageDelayed(0, 900l);
                 voice_fight_start.start();
             }
 
