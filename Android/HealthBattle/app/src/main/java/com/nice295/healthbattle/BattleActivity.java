@@ -138,10 +138,11 @@ public class BattleActivity extends BaseActivity implements View.OnClickListener
 
         GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(mImageView);
         Glide.with(this)
-                .load(R.drawable.dancingbanna)
+                .load(R.drawable.fight)
                 .asGif()
                 .crossFade()
                 .into(mImageView);
+
 /*
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

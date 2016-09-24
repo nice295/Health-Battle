@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/ll00"
@@ -20,11 +20,12 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
+                android:layout_margin="?attr/actionBarSize"
                 android:layout_marginTop="19dp"
                 android:gravity="center"
                 android:text="@string/bigmatch"
                 android:textAppearance="@android:style/TextAppearance.Material.Large"
-                android:textSize="80dp" />
+                android:textSize="80dp"/>
 
             <Button
                 android:id="@+id/btStart"
@@ -34,7 +35,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="21dp"
                 android:background="@drawable/start"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -52,7 +53,7 @@
                     android:layout_below="@+id/textView6"
                     android:layout_marginLeft="32dp"
                     android:layout_weight="1"
-                    android:src="@drawable/ic_launcher" />
+                    android:src="@drawable/ic_launcher"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -62,7 +63,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="VS"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"/>
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/ivPersonRight"
@@ -73,7 +74,7 @@
                     android:layout_below="@+id/textView6"
                     android:layout_marginRight="32dp"
                     android:layout_weight="1"
-                    android:src="@drawable/ic_launcher" />
+                    android:src="@drawable/ic_launcher"/>
             </LinearLayout>
 
         </RelativeLayout>
@@ -83,6 +84,7 @@
         android:id="@+id/ll01"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/fight_bg"
         android:orientation="vertical">
 
         <FrameLayout
@@ -97,48 +99,45 @@
                 android:layout_marginTop="20dp">
 
                 <com.nice295.healthbattle.ui.HPBar xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/hpbar1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    app:barColor="?attr/colorAccent"
-                    app:barLevel="100"
-                    app:barStrokeWidth="18dp"
-                    app:ltr="true" />
+                                                   android:id="@+id/hpbar1"
+                                                   android:layout_width="wrap_content"
+                                                   android:layout_height="match_parent"
+                                                   app:barColor="#e63d24"
+                                                   app:barLevel="100"
+                                                   app:barStrokeWidth="18dp"
+                                                   app:ltr="true"/>
 
                 <com.nice295.healthbattle.ui.HPBar xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/hpbar2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    app:barColor="?attr/colorAccent"
-                    app:barLevel="100"
-                    app:barStrokeWidth="18dp"
-                    app:ltr="false" />
+                                                   android:id="@+id/hpbar2"
+                                                   android:layout_width="wrap_content"
+                                                   android:layout_height="match_parent"
+                                                   app:barColor="?attr/colorAccent"
+                                                   app:barLevel="100"
+                                                   app:barStrokeWidth="18dp"
+                                                   app:ltr="false"/>
             </com.nice295.healthbattle.ui.HPBarGroup>
 
             <ImageView
                 android:id="@+id/battle_image_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/dancingbanna" />
+                android:src="@drawable/fight"/>
 
             <ImageView
                 android:id="@+id/fight_text_image_view"
-                android:layout_width="50dp"
+                android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:src="@drawable/button_restart"/>
+                android:layout_marginBottom="120dp"
+                android:src="@drawable/battle_text_fight"/>
         </FrameLayout>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="button" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/llLost"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -149,7 +148,8 @@
                 android:id="@+id/ivBG"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/winner" />
+                android:background="#86959f"
+                android:src="@drawable/loser"/>
         </RelativeLayout>
     </LinearLayout>
 
@@ -157,18 +157,46 @@
         android:id="@+id/llWin"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
         android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#1a3650"
+            android:src="@drawable/winner">
 
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/ivBG"
+                <ImageView
+                    android:id="@+id/ivBG"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/winner"/>
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/loser" />
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="120dp"
+                android:text="Lee"
+                android:textSize="30dp"/>
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="43dp"
+                android:scaleType="fitXY"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/button_restart"/>
         </RelativeLayout>
     </LinearLayout>
 
