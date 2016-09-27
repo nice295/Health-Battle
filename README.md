@@ -17,14 +17,14 @@ User flow
 
 Designs
 ---
-아직 준비 중이라는...
+![Design](./Design/key_screens_0923.png)
 
 
-Protorype
+Prototype
 ---
 여전히 준비 중...
 
 
 Who are we?
 ---
-...
+[데모 비디오를 확인하세요.](https://youtu.be/fiW_xk8ih5A)
