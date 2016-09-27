@@ -86,7 +86,7 @@ public class BattleFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         NestedScrollView ll = (NestedScrollView) inflater.inflate(
-            R.layout.fragment_battle, container, false);
+                R.layout.fragment_battle, container, false);
 
         // views
         mTv00 = (TextView) ll.findViewById(R.id.tv00);
@@ -130,12 +130,12 @@ public class BattleFragment extends Fragment implements View.OnClickListener {
         }
 
         // load internally
-        mMe = Paper.book().read("me", new User());
+        mMe = Paper.book().read("me");
         mTv00.setText(mMe.getUsername());
 
         Glide.with(getActivity())
-            .load(mMe.getImageUrl())
-            .into(mIv00);
+                .load(mMe.getImageUrl())
+                .into(mIv00);
 
         mUserArray = new ArrayList<User>();
 
@@ -165,33 +165,33 @@ public class BattleFragment extends Fragment implements View.OnClickListener {
 
                 if (tv != null) {
                     tv.setText(user.getUsername());
-                    Glide.with(getActivity())
-                        .load(user.getImageUrl())
-                        .into(iv);
+                    Glide.with(getActivity().getApplicationContext())
+                            .load(user.getImageUrl())
+                            .into(iv);
                 }
             }
         };
 
         mDatabase.child("users").addValueEventListener(
-            new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    mUserArray.clear();
-                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                        User user = postSnapshot.getValue(User.class);
-                        if (user.getUsername().equals(mMe.getUsername()))
-                            continue;
-                        Log.d(TAG, "Name: " + user.getUsername());
-                        mUserArray.add(user);
-                        mHandler.sendEmptyMessage(mUserArray.size() - 1);
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        mUserArray.clear();
+                        for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                            User user = postSnapshot.getValue(User.class);
+                            if (user.getUsername().equals(mMe.getUsername()))
+                                continue;
+                            Log.d(TAG, "Name: " + user.getUsername());
+                            mUserArray.add(user);
+                            mHandler.sendEmptyMessage(mUserArray.size() - 1);
+                        }
                     }
-                }
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    Log.w(TAG, "getUser:onCancelled", databaseError.toException());
-                }
-            });
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Log.w(TAG, "getUser:onCancelled", databaseError.toException());
+                    }
+                });
 
         return ll;
     }
@@ -207,37 +207,37 @@ public class BattleFragment extends Fragment implements View.OnClickListener {
         //mProgressBar.setVisibility(View.VISIBLE);
 
         mDatabase.child("users").child(mUser.getUid()).addValueEventListener(
-            new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    if (!dataSnapshot.exists()) {
-                        return;
-                    }
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (!dataSnapshot.exists()) {
+                            return;
+                        }
 
-                    User user = dataSnapshot.getValue(User.class);
+                        User user = dataSnapshot.getValue(User.class);
 
-                    if (dataSnapshot.exists()) {
-                        mTv00.setText(user.getUsername());
+                        if (dataSnapshot.exists()) {
+                            mTv00.setText(user.getUsername());
 
 /*                        Glide.with(getContext())
                             .load(user.getImageUrl())
                             .into(mIv00);*/
 
-                        // Save internally
-                        Paper.book().write("me", user);
-                    } else {
-                        Log.d(TAG, "Adding new user info");
-                        writeNewUser(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail(), mUser.getPhotoUrl().toString());
+                            // Save internally
+                            Paper.book().write("me", user);
+                        } else {
+                            Log.d(TAG, "Adding new user info");
+                            writeNewUser(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail(), mUser.getPhotoUrl().toString());
+                        }
+
+                        //mProgressBar.setVisibility(View.INVISIBLE);
                     }
 
-                    //mProgressBar.setVisibility(View.INVISIBLE);
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    Log.w(TAG, "getUser:onCancelled", databaseError.toException());
-                }
-            });
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Log.w(TAG, "getUser:onCancelled", databaseError.toException());
+                    }
+                });
     }
 
     private void writeNewUser(String userId, String name, String email, String imageUrl) {
@@ -267,5 +267,12 @@ public class BattleFragment extends Fragment implements View.OnClickListener {
         intent.putExtra("me", mMe);
         intent.putExtra("opponent", user);
         startActivity(intent);
+    }
+
+    @Override
+    public void onDestroyView() {
+        mDatabase.onDisconnect();
+
+        super.onDestroyView();
     }
 }

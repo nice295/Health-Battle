@@ -39,7 +39,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.nice295.healthbattle.Model.User;
 import com.tsengvn.typekit.TypekitContextWrapper;
+
+import io.paperdb.Paper;
 
 public class FacebookLoginActivity extends AppCompatActivity {
 
@@ -49,6 +54,8 @@ public class FacebookLoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+
+    private DatabaseReference mDatabase;
 
     private CallbackManager mCallbackManager;
 
@@ -62,6 +69,8 @@ public class FacebookLoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_facebook);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -145,6 +154,14 @@ public class FacebookLoginActivity extends AppCompatActivity {
                             Toast.makeText(FacebookLoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
+
+                        // Save user as database
+                        Log.d(TAG, "Save user info as database.");
+                        User user = new User(mAuth.getCurrentUser().getDisplayName(),
+                                mAuth.getCurrentUser().getEmail(),
+                                mAuth.getCurrentUser().getPhotoUrl().toString());
+                        mDatabase.child("users").child(mAuth.getCurrentUser().getUid()).setValue(user);
+                        Paper.book().write("me", user);
 
                         hideProgressDialog();
 

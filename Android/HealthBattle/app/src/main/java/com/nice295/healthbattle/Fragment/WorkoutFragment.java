@@ -129,7 +129,8 @@ public class WorkoutFragment extends Fragment implements View.OnClickListener {
                             Paper.book().write("me", user);
                         } else {
                             Log.d(TAG, "Adding new user info");
-                            writeNewUser(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail(), mUser.getPhotoUrl().toString());
+                            // Move to Signin process
+                            // writeNewUser(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail(), mUser.getPhotoUrl().toString());
                         }
 
                         //mProgressBar.setVisibility(View.INVISIBLE);

@@ -142,5 +142,4 @@ public class MainActivity extends BaseActivity {
             return mFragmentTitles.get(position);
         }
     }
-
 }
