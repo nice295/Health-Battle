@@ -1,0 +1,273 @@
+[
+	{
+		"objectId": "87331ABE-3BEB-467A-9DD3-FC821DF3E37F",
+		"kind": "artboard",
+		"name": "fight",
+		"originalName": "fight",
+		"maskFrame": null,
+		"layerFrame": {
+			"x": 221,
+			"y": 34,
+			"width": 360,
+			"height": 640
+		},
+		"visible": true,
+		"metadata": {},
+		"backgroundColor": "rgba(255, 255, 255, 1)",
+		"children": [
+			{
+				"objectId": "8A1F1363-A18B-40D8-8944-D0B2918918E8",
+				"kind": "group",
+				"name": "button1",
+				"originalName": "button1",
+				"maskFrame": null,
+				"layerFrame": {
+					"x": 24,
+					"y": 268,
+					"width": 135,
+					"height": 137
+				},
+				"visible": true,
+				"metadata": {
+					"opacity": 1
+				},
+				"image": {
+					"path": "images/Layer-button1-oeexrjez.png",
+					"frame": {
+						"x": 24,
+						"y": 268,
+						"width": 135,
+						"height": 137
+					}
+				},
+				"children": []
+			},
+			{
+				"objectId": "B00F588D-FF81-44B7-AD1A-FF38509D9BBB",
+				"kind": "group",
+				"name": "fight1",
+				"originalName": "fight",
+				"maskFrame": null,
+				"layerFrame": {
+					"x": 0,
+					"y": 0,
+					"width": 360,
+					"height": 640
+				},
+				"visible": true,
+				"metadata": {
+					"opacity": 1
+				},
+				"image": {
+					"path": "images/Layer-fight-qjawrju4.jpg",
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"width": 360,
+						"height": 640
+					}
+				},
+				"children": []
+			}
+		]
+	},
+	{
+		"objectId": "91BA4E40-DA5A-45D1-9DE4-BF5E90059F57",
+		"kind": "artboard",
+		"name": "work",
+		"originalName": "work",
+		"maskFrame": null,
+		"layerFrame": {
+			"x": 681,
+			"y": 34,
+			"width": 360,
+			"height": 640
+		},
+		"visible": true,
+		"metadata": {},
+		"backgroundColor": "rgba(255, 255, 255, 1)",
+		"children": [
+			{
+				"objectId": "2C46B968-420B-4AC9-A961-14051918470A",
+				"kind": "group",
+				"name": "button",
+				"originalName": "button",
+				"maskFrame": null,
+				"layerFrame": {
+					"x": 180,
+					"y": 84,
+					"width": 180,
+					"height": 42
+				},
+				"visible": true,
+				"metadata": {
+					"opacity": 1
+				},
+				"image": {
+					"path": "images/Layer-button-mkm0nki5.png",
+					"frame": {
+						"x": 180,
+						"y": 84,
+						"width": 180,
+						"height": 42
+					}
+				},
+				"children": []
+			},
+			{
+				"objectId": "1C76028D-26B8-404C-8582-49E871D4BA36",
+				"kind": "group",
+				"name": "work1",
+				"originalName": "work",
+				"maskFrame": null,
+				"layerFrame": {
+					"x": 0,
+					"y": 0,
+					"width": 360,
+					"height": 640
+				},
+				"visible": true,
+				"metadata": {
+					"opacity": 1
+				},
+				"image": {
+					"path": "images/Layer-work-mum3njay.jpg",
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"width": 360,
+						"height": 640
+					}
+				},
+				"children": []
+			}
+		]
+	},
+	{
+		"objectId": "A8506B01-AEC6-4322-8D55-088161816CEC",
+		"kind": "artboard",
+		"name": "fight00",
+		"originalName": "fight00",
+		"maskFrame": null,
+		"layerFrame": {
+			"x": 1141,
+			"y": 34,
+			"width": 360,
+			"height": 640
+		},
+		"visible": true,
+		"metadata": {},
+		"backgroundColor": "rgba(255, 255, 255, 1)",
+		"children": [
+			{
+				"objectId": "4B476A0C-6AC8-42B4-A9E3-128979EB964D",
+				"kind": "group",
+				"name": "button2",
+				"originalName": "button2",
+				"maskFrame": null,
+				"layerFrame": {
+					"x": 94,
+					"y": 538,
+					"width": 180,
+					"height": 52
+				},
+				"visible": true,
+				"metadata": {
+					"opacity": 1
+				},
+				"image": {
+					"path": "images/Layer-button2-nei0nzzb.png",
+					"frame": {
+						"x": 94,
+						"y": 538,
+						"width": 180,
+						"height": 52
+					}
+				},
+				"children": []
+			},
+			{
+				"objectId": "E2589050-0BED-403B-AD4C-F757C16C68EF",
+				"kind": "group",
+				"name": "Group_2",
+				"originalName": "Group 2",
+				"maskFrame": null,
+				"layerFrame": {
+					"x": 0,
+					"y": 84,
+					"width": 360,
+					"height": 556
+				},
+				"visible": true,
+				"metadata": {
+					"opacity": 1
+				},
+				"image": {
+					"path": "images/Layer-Group_2-rti1odkw.png",
+					"frame": {
+						"x": 0,
+						"y": 84,
+						"width": 360,
+						"height": 556
+					}
+				},
+				"children": [
+					{
+						"objectId": "0526B6D2-3C30-4379-9F35-EBAF99E7A11B",
+						"kind": "group",
+						"name": "gif",
+						"originalName": "gif",
+						"maskFrame": null,
+						"layerFrame": {
+							"x": 31,
+							"y": 172,
+							"width": 292,
+							"height": 201
+						},
+						"visible": true,
+						"metadata": {
+							"opacity": 1
+						},
+						"image": {
+							"path": "images/Layer-gif-mduynki2.png",
+							"frame": {
+								"x": 31,
+								"y": 172,
+								"width": 292,
+								"height": 201
+							}
+						},
+						"children": []
+					}
+				]
+			},
+			{
+				"objectId": "91388FFA-29C6-4416-8703-89D8FA499C05",
+				"kind": "group",
+				"name": "work2",
+				"originalName": "work",
+				"maskFrame": null,
+				"layerFrame": {
+					"x": 0,
+					"y": 0,
+					"width": 360,
+					"height": 640
+				},
+				"visible": true,
+				"metadata": {
+					"opacity": 1
+				},
+				"image": {
+					"path": "images/Layer-work-otezodhg.jpg",
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"width": 360,
+						"height": 640
+					}
+				},
+				"children": []
+			}
+		]
+	}
+]
